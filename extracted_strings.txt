@@ -1,0 +1,714 @@
+      settings_old.colorGrades
+  colorGrades INTEGER NOT NULL
+  showGpaWelc INTEGER NOT NULL
+  showGradeDetails INTEGER NOT NULL
+  showNoTrGpa INTEGER NOT NULL
+ GPA
+ GPA By Course
+ GPA By MP
+ GPA scales
+ and credits. You can change GPA scales for each course using the GPA Editor.
+ background
+ foreground
+ grade category details
+ of the way to being a RoundedRectangleBorder
+ only GPA calculations for this year will be shown.
+ only GPA for this year independently can be calculated. Your cumulative GPA
+ scale
+ transcript
+ unscaledAscent
+ which takes into account GPA from previous years
+ will be calculated when your transcript becomes available on HAC.
+///Users/srujanmupparapu/gradeway/gradeway-app/.dart_tool/flutter_build/dart_plugin_registrant.dart
+//gradeway-production.s3.amazonaws.com/data/districts.csv
+//gradeway-production.s3.amazonaws.com/example-test-user
+//gradeway.app/frequently-asked-questions.html
+//gradeway.app/privacy-policy.html
+//gradeway.app/terms-of-service.html
+//www.instagram.com/gradeway.official/
+/Content/Student/Transcript.aspx
+/Grades/IPR
+/Grades/ReportCard
+/Grades/Transcript
+/grades
+/grades.html
+/transcript.html
+A transcript has not been generated for this student.
+ALTER TABLE msgConfigs ADD showGradeDetails INTEGER DEFAULT 1
+Add Grade
+Add Mock Grade
+AldineGpaSettingsConverter
+AliefGpaSettingsConverter
+America/ShiprockLMT
+An error occurred while calculating your GPA.
+AudioSurroundModeNext
+BackgroundIsolateBinaryMessenger
+BackgroundTransformer
+CREATE TABLE courseGpaSettings 
+CREATE TABLE previousGrades 
+Calculate GPA
+Calculate GPA with custom grades
+Calculate both weighted and unweighted GPA
+CollegeStationGpaSettingsConverter
+Color Code Grade Scores
+Configure scales and exclusions
+Connection was upgraded
+CoppellGpaSettingsConverter
+Course GPA Editor
+CourseGpaEditor
+CourseGpaSettings
+CourseGradesView
+CourseGradesViewState
+Credits Towards GPA
+Customize GPA scales
+DefaultGpaSettingsConverter
+DefaultTranscriptDetailsConverter
+DentonGpaSettingsConverter
+Easily calculate changes to your class averages by editing grades and adding mock assignments.
+Easily set reminders for tasks and schedule homework notifications. View all homework and grades tog
+Edit Grade
+Edit Mock Grade
+EditCourseGpaDialog
+EditCourseGpaDialog.
+Email About Grade
+Enjoying GradeWay
+Estimated GPA
+Exclude credits from GPA
+FayettevilleTranscriptDataConverter
+FfiTrampoline___scale
+FlippedTranscriptDataConverter
+FrisoGpaSettingsConverter
+FullGpa
+FullGpaView
+GPA Calculator
+GPA Editor
+GPA What If Calculator
+GPA and Rank
+Get notified of upcoming grades
+GpaBlurred
+GpaCalculatorEndpoint
+GpaCalculatorEndpoint.fromResources
+GpaConfiguration
+GpaConfiguration.fromDistrictInfo
+GpaCourseData
+GpaCourseFactory
+GpaCredits
+GpaManager
+GpaManager.
+GpaPage
+GpaRank
+GpaScoreConverter
+GpaSettings
+GpaSettingsConverter
+GpaSettingsEndpoint
+GpaType
+GpaType.
+GpaWhatIfCalculatorPage
+GpaWhatIfCalculatorPage.
+Grade
+Grade Analysis
+Grade Analysis Page
+Grade Impacts
+Grade Score Highlighting
+GradeAnalysisPopup
+GradeAnalysisPopupState
+GradeCalculatorResult
+GradeCategories
+GradeCategories.
+GradeEditorDialog
+GradeItem
+GradeWay
+GradeWay 3.0
+GradeWay v
+GradeWayTitle
+GradeWayWelcomeMessage
+GradedAssignment
+Grades
+GradesEndpoint
+GradesExtension
+GradesFormGenerator
+GradesFormGenerator.fromDocument
+GradesPage
+GradesUpdate
+HEBGpaSettingsConverter
+HacEndpoints
+HacEndpoints.
+Impact By Grade
+Improved GPA Calculator
+Invalid Points6
+Invalid Total Points
+IrvingGpaSettingsConverter
+KatyGpaSettingsConverter
+Know your GPA ahead of time.
+Know your GPA in real time for both weighted and unweighted scales
+Major Grade
+Max Points
+McKinneyGpaSettingsConverter
+MidwayGpaSettingsConverter
+Minor Grade
+Mock Grade
+Navigate your grades and
+NewGradesFeature
+NewGradesFeature.
+NewGradesView
+No Grade
+No New Grades Have Been Added
+Non-graded
+NorthsideGpaSettingsConverter
+Not enough info has been posted about your grades for What If calculations.
+Not enough info has been posted about your grades for analysis.
+Only GPA calculations for this year will be shown until your transcript is available on HAC.
+PittsburghGpaSettingsConverter
+PointerScaleEvent
+Points
+Predict changes to your GPA
+Predict changes to your GPA by editing your class averages and edit GPA scales for a more accurate e
+Predict changes to your GPA by editing your class averages.
+PremiumUpgradeBanner
+PremiumUpgradeDialog
+Quickly see updates to your grades
+Rect.fromPoints
+RoundButton
+RoundButtonState
+RoundCard
+RoundImplies
+RoundRockGpaSettingsConverter
+RoundedRectangleBorder
+SanAngeloGpaSettingsConverter
+Scale
+ScaleTransition
+Scales and exclusions do not apply to unweighted GPA calculations.
+See exactly how each grade impacts your class average.
+Since there is no official GPA on your transcript yet
+Since your transcript is not currently available on HAC
+SizeScale
+StringBase_createFromCodePoints
+Subscription passed to TLS upgrade is paused
+TGpA
+Take GradeWay to the
+Take GradeWay to the next level
+Tap on a Grade Category to View More Info
+Tap on a Grade to Edit
+Tap on a Grade to View More Info
+TgpA
+The BackgroundIsolateBinaryMessenger.instance value is invalid until BackgroundIsolateBinaryMessenge
+TomballGpaSettingsConverter
+Total Points
+Transcript
+Transcript Configuration
+Transcript Hasn
+TranscriptConfigurationEndpoint
+TranscriptConfigurationEndpoint.fromResources
+TranscriptConfigurationPage
+TranscriptDetails
+TranscriptDetailsConverter
+TranscriptEndpoint
+TranscriptEndpoint.
+TranscriptExclusion
+TranscriptGroup
+TranscriptPage
+TranscriptPageState
+TranscriptYearData
+TranscriptYearFactory
+Transform.scale
+Unweighted
+Unweighted GPA
+UnweightedCategoryScore
+UpGrade Premium
+Upcoming Grades
+UpcomingGradeItem
+UpcomingPage
+Upgrade to Premium
+UpgradeAlert
+UpgradeAlertMessage
+UpgradeBanner
+UpgradeBase
+UpgradeBaseState
+UpgradeDialogStyle
+UpgradeDialogStyle.
+UpgradeWait
+Upgrader
+Upgrader.
+UpgraderMessages
+UpgraderMessages.
+UpgraderOS
+View score graphs and impacts to your grade
+View your GPA over time
+Weighted
+Weighted GPA
+Weighted Gpa
+Weighted Points
+Weighted Score
+Weighted Total Points
+Welcome to GradeWay
+WhatIfGpaCourseData
+WhatIfGrade
+You do not have an official weighted GPA on your transcript yet. Exclusions made here will not impac
+You do not have any credits listed on your transcript yet.
+You should set scales up based on the way your school district calculates GPA.
+Your GPA is calculated using your course averages
+_AutoScaleInlineWidget
+_CopyPointerScaleEvent
+_CourseGpaCard
+_CourseGpaCardState
+_FullGpaState
+_FullGpaViewState
+_GpaByMpChart
+_GpaCalculatorIcon
+_GpaConfig
+_GpaEditorAndPredictorIcon
+_GpaLoader
+_GpaLoaderState
+_GpaPageState
+_GpaResult
+_GpaScaffold
+_GpaStaticRender
+_GpaWhatIfCalculatorPageState
+_GradeDetails
+_GradeEditorDialogState
+_GradeEntry
+_GradeImpactsIcon
+_GradeWayApplication
+_GradeWrapper
+_GradesPageState
+_JsonStringParser
+_NewGradesViewState
+_NoTranscriptMessage
+_PointerScaleEvent
+_RenderScaledInlineWidget
+_RoundedRectangleToCircleBorder
+_StadiumToRoundedRectangleBorder
+_TranscriptConfigurationPageState
+_TranscriptLoader
+_TranscriptLoaderState
+_TransformedPointerScaleEvent
+__TransformedPointerScaleEvent
+__onDatabaseDowngradeDelete
+__scale
+_alphaScale
+_background
+_blueScale
+_builtInForegroundPainters
+_calculateGpa
+_colorCodeGradesOption
+_courseGpa
+_courseGpaSettings
+_courseGpas
+_createBuiltInForegroundPainters
+_createFromCodePoints
+_cumulativeGpa
+_dialogScaleTween
+_drawButtonBackgroundsAndDividersSingleRow
+_drawButtonBackgroundsAndDividersStacked
+_encodeTwoPoints
+_foreground
+_getBackgroundColor
+_getBackgroundPaint
+_gpaCalculatorOption
+_gpaChangeIndicator
+_gpaEditorOption
+_gpaEndpoint
+_gpaForCourse
+_gpaForEachCourse
+_gpaRankTableCard
+_gradeImpact
+_gradeItem
+_gradesCard
+_greenScale
+_hideGradeDetailsMessage
+_isMockGrade
+_isWeighted
+_largeGpaCard
+_makeCourseGpaSettingsEndpoint
+_makeGradedAssignmentEndpoint
+_makeTranscriptExclusionEndpoint
+_migrateTranscriptExclusionsTable
+_mockGpaCourseData
+_newGradeCard
+_noGpaEditorOption
+_noTranscript
+_officialGpa
+_officialGpaCard
+_onPremiumUpgradeSuccess
+_originalCourseGpas
+_originalCumulativeGpa
+_originalThisYearGpa
+_paddingScaleFactor
+_paintBackgroundColor
+_paintBackgroundImage
+_parseBackgroundColor
+_parseGrades
+_parseGradesForm
+_parseMaxPoints
+_parseTranscript
+_parseTranscriptCourses
+_pointsField
+_radiusScale
+_rawScoreWeightedGpa
+_redScale
+_roundLog2
+_roundUpToPowerOfTwo
+_scale
+_scaleAlpha
+_scaleCredits
+_scaledPadding
+_standardWeightedGpa
+_thisYearGpa
+_totalPointsField
+_transcriptConfigurationOption
+_transcriptEndpoint
+_transcriptExclusions
+_transcriptGpaIncomplete
+_transcriptView
+_transcriptYearCard
+_updateForegroundPainter
+_updateNewGrades
+_upgradeCard
+_upgradeWait
+_weightedGpa
+_wrapWithBackground
+accesscenter.roundrockisd.org
+assets/icons/gpa_config.png
+assets/icons/tab_bar/gpa.png
+assets/icons/tab_bar/grades.png
+assets/icons/transcript.png
+background
+background-color
+backgroundColor
+backgroundCursorColor
+calculateScoresByGrade
+colorCodeAssignmentGrades
+colorCodeGrades
+colorGrades
+com.srujan.up_grade_app
+courseGpaSettings
+creditsTowardsGpa
+cumulativeGpa
+deleteCourseGpaSettings
+deleteTranscriptExclusions
+dialogBackgroundColor
+dio/src/transformers/background_transformer.dart
+discountedRecurringPayment
+entry_points_temp
+flutter/src/painting/rounded_rectangle_border.dart
+flutter/src/services/_background_isolate_binary_messenger_io.dart
+foreground
+foregroundColor
+foregroundDecoration
+foregroundPainter
+fromGradedAssignment
+fromTranscript
+getCourseGpaSettings
+getEndpointsForSelection
+getGpaConfiguration
+getGrades
+getGradesWithForm
+getTranscript
+getTranscriptExclusions
+getUnweightedCategories
+gpaByMp
+gpaByMpForCourse
+gpaConfiguration
+gpaCreditsForCourse
+grade
+gradeRecords
+grades
+grades.tomballisd.net
+gradeway.official
+gradeway/backend/database/endpoint.dart
+gradeway/backend/database/migration/version2.dart
+gradeway/backend/database/migration/version3.dart
+gradeway/backend/database/migration/version4.dart
+gradeway/backend/database/types/bell_period.dart
+gradeway/backend/database/types/course_gpa_settings.dart
+gradeway/backend/database/types/course_name.dart
+gradeway/backend/database/types/course_positioning.dart
+gradeway/backend/database/types/course_score.dart
+gradeway/backend/database/types/custom_course_category.dart
+gradeway/backend/database/types/homework.dart
+gradeway/backend/database/types/message_configuration.dart
+gradeway/backend/database/types/other_account_data.dart
+gradeway/backend/database/types/previous_assignment.dart
+gradeway/backend/database/types/reminder.dart
+gradeway/backend/database/types/settings_configuration.dart
+gradeway/backend/database/types/student_account.dart
+gradeway/backend/database/types/transcript_exclusion.dart
+gradeway/backend/database/wrapper.dart
+gradeway/backend/gpa/configuration.dart
+gradeway/backend/gpa/converters/score.dart
+gradeway/backend/gpa/converters/settings.dart
+gradeway/backend/gpa/converters/transcript_details.dart
+gradeway/backend/gpa/endpoints/calculator.dart
+gradeway/backend/gpa/endpoints/settings.dart
+gradeway/backend/gpa/endpoints/transcript_configuration.dart
+gradeway/backend/gpa/source/course_data.dart
+gradeway/backend/gpa/source/transcript_year_data.dart
+gradeway/backend/grades_what_if/calculator.dart
+gradeway/backend/grades_what_if/course.dart
+gradeway/backend/grades_what_if/grade.dart
+gradeway/backend/gradeway.dart
+gradeway/backend/hac/endpoints/account_details.dart
+gradeway/backend/hac/endpoints/attendance.dart
+gradeway/backend/hac/endpoints/endpoint.dart
+gradeway/backend/hac/endpoints/grades.dart
+gradeway/backend/hac/endpoints/progress_report.dart
+gradeway/backend/hac/endpoints/report_card.dart
+gradeway/backend/hac/endpoints/schedule.dart
+gradeway/backend/hac/endpoints/student_picker.dart
+gradeway/backend/hac/endpoints/transcript.dart
+gradeway/backend/hac/form_generators/attendance_month_form.dart
+gradeway/backend/hac/form_generators/form_generator.dart
+gradeway/backend/hac/form_generators/grades_form.dart
+gradeway/backend/hac/form_generators/mp_selector_form.dart
+gradeway/backend/hac/form_generators/progress_report_form.dart
+gradeway/backend/hac/form_generators/report_card_form.dart
+gradeway/backend/hac/home_access_center.dart
+gradeway/backend/hac/mock/mock_client.dart
+gradeway/backend/hac/mock/mock_hac.dart
+gradeway/backend/hac/network/client.dart
+gradeway/backend/hac/network/cookie.dart
+gradeway/backend/hac/network/cookie_manager.dart
+gradeway/backend/hac/network/logger.dart
+gradeway/backend/hac/parsed_data/account_details.dart
+gradeway/backend/hac/parsed_data/attendance_absence.dart
+gradeway/backend/hac/parsed_data/attendance_month.dart
+gradeway/backend/hac/parsed_data/category_score.dart
+gradeway/backend/hac/parsed_data/course.dart
+gradeway/backend/hac/parsed_data/graded_assignment.dart
+gradeway/backend/hac/parsed_data/html_table.dart
+gradeway/backend/hac/parsed_data/marking_period.dart
+gradeway/backend/hac/parsed_data/progress_report.dart
+gradeway/backend/hac/parsed_data/report_card.dart
+gradeway/backend/hac/parsed_data/schedule.dart
+gradeway/backend/hac/parsed_data/student_picker.dart
+gradeway/backend/hac/parsed_data/transcript.dart
+gradeway/backend/user/course_names.dart
+gradeway/backend/user/course_positionings.dart
+gradeway/backend/user/course_scores.dart
+gradeway/backend/user/district_configuration.dart
+gradeway/backend/user/grade_categories.dart
+gradeway/backend/user/grades_update.dart
+gradeway/backend/user/hac_endpoints.dart
+gradeway/backend/user/new_grades.dart
+gradeway/backend/user/user.dart
+gradeway/backend/user/user_data.dart
+gradeway/backend/user/user_notifications.dart
+gradeway/backend/utilities/biometrics.dart
+gradeway/backend/utilities/course_identity.dart
+gradeway/backend/utilities/data_store.dart
+gradeway/backend/utilities/district_tracker.dart
+gradeway/backend/utilities/districts_finder.dart
+gradeway/backend/utilities/extensions.dart
+gradeway/backend/utilities/feedback_tracker.dart
+gradeway/backend/utilities/instagram_tracker.dart
+gradeway/backend/utilities/login_helper.dart
+gradeway/backend/utilities/login_manager.dart
+gradeway/backend/utilities/notifications.dart
+gradeway/backend/utilities/parse_isolate.dart
+gradeway/backend/utilities/preferences.dart
+gradeway/backend/utilities/premium.dart
+gradeway/backend/utilities/restart_timer.dart
+gradeway/backend/utilities/support_email.dart
+gradeway/backend/utilities/update_task_manager.dart
+gradeway/backend/utilities/upgrade_banner.dart
+gradeway/frontend/app/base/base_layout.dart
+gradeway/frontend/app/base/welcome_messages.dart
+gradeway/frontend/app/bell_schedule/bell_schedule_page.dart
+gradeway/frontend/app/bell_schedule/bell_schedules.dart
+gradeway/frontend/app/bell_schedule/choose_bell_schedule.dart
+gradeway/frontend/app/bell_schedule/time_left_card.dart
+gradeway/frontend/app/bell_schedule/view_bell_schedule.dart
+gradeway/frontend/app/gpa/course_editor.dart
+gradeway/frontend/app/gpa/edit_course_dialog.dart
+gradeway/frontend/app/gpa/full_gpa.dart
+gradeway/frontend/app/gpa/gpa.dart
+gradeway/frontend/app/gpa/manager.dart
+gradeway/frontend/app/gpa/transcript_configuration.dart
+gradeway/frontend/app/gpa/what_if_calculator.dart
+gradeway/frontend/app/grades/averages_card_view.dart
+gradeway/frontend/app/grades/course_analysis.dart
+gradeway/frontend/app/grades/course_card.dart
+gradeway/frontend/app/grades/course_content.dart
+gradeway/frontend/app/grades/course_grades.dart
+gradeway/frontend/app/grades/courses_list.dart
+gradeway/frontend/app/grades/grade_edit_dialog.dart
+gradeway/frontend/app/grades/grade_item.dart
+gradeway/frontend/app/grades/grades.dart
+gradeway/frontend/app/grades/marking_periods.dart
+gradeway/frontend/app/grades/score_indicator.dart
+gradeway/frontend/app/grades/what_if_calculator.dart
+gradeway/frontend/app/login/district_selector.dart
+gradeway/frontend/app/login/first_screen.dart
+gradeway/frontend/app/login/login_processor.dart
+gradeway/frontend/app/login/new_user_login.dart
+gradeway/frontend/app/login/return_login.dart
+gradeway/frontend/app/login/welcome.dart
+gradeway/frontend/app/login/widgets.dart
+gradeway/frontend/app/overview/attendance.dart
+gradeway/frontend/app/overview/contact_teachers.dart
+gradeway/frontend/app/overview/feedback.dart
+gradeway/frontend/app/overview/navigation_bar.dart
+gradeway/frontend/app/overview/new_grades.dart
+gradeway/frontend/app/overview/overview.dart
+gradeway/frontend/app/overview/progress_report.dart
+gradeway/frontend/app/overview/report_card.dart
+gradeway/frontend/app/overview/schedule.dart
+gradeway/frontend/app/overview/transcript.dart
+gradeway/frontend/app/overview/upcoming.dart
+gradeway/frontend/app/planner/day_view.dart
+gradeway/frontend/app/planner/editor_form.dart
+gradeway/frontend/app/planner/homework_view.dart
+gradeway/frontend/app/planner/planner.dart
+gradeway/frontend/app/planner/reminders_view.dart
+gradeway/frontend/app/planner/select_course.dart
+gradeway/frontend/app/planner/select_type.dart
+gradeway/frontend/app/planner/widgets.dart
+gradeway/frontend/app/premium/animated_item.dart
+gradeway/frontend/app/premium/color_theme_popup.dart
+gradeway/frontend/app/premium/day_view_popup.dart
+gradeway/frontend/app/premium/features.dart
+gradeway/frontend/app/premium/gpa_blurred.dart
+gradeway/frontend/app/premium/grade_analysis_popup.dart
+gradeway/frontend/app/premium/premium.dart
+gradeway/frontend/app/premium/promo.dart
+gradeway/frontend/app/premium/push_notification_popup.dart
+gradeway/frontend/app/premium/reminder_popup.dart
+gradeway/frontend/app/premium/upgrade_banner.dart
+gradeway/frontend/app/premium/what_if_popup.dart
+gradeway/frontend/app/settings/accounts.dart
+gradeway/frontend/app/settings/color_coding.dart
+gradeway/frontend/app/settings/color_theme.dart
+gradeway/frontend/app/settings/login_security.dart
+gradeway/frontend/app/settings/settings.dart
+gradeway/frontend/app/settings/support.dart
+gradeway/frontend/app/settings/widgets.dart
+gradeway/frontend/constants/app_icons.dart
+gradeway/frontend/constants/images.dart
+gradeway/frontend/constants/themes.dart
+gradeway/frontend/utilities/category_colors.dart
+gradeway/frontend/utilities/dynamic_theme.dart
+gradeway/frontend/utilities/extensions.dart
+gradeway/frontend/utilities/flush_bar.dart
+gradeway/frontend/utilities/navigation.dart
+gradeway/frontend/utilities/page_base.dart
+gradeway/frontend/utilities/size_scale.dart
+gradeway/frontend/widgets/adapters.dart
+gradeway/frontend/widgets/bar_chart.dart
+gradeway/frontend/widgets/buttons.dart
+gradeway/frontend/widgets/color_preview.dart
+gradeway/frontend/widgets/custom_dialog.dart
+gradeway/frontend/widgets/custom_modal_picker.dart
+gradeway/frontend/widgets/custom_tab_view.dart
+gradeway/frontend/widgets/dynamic.dart
+gradeway/frontend/widgets/error_widgets.dart
+gradeway/frontend/widgets/list_item.dart
+gradeway/frontend/widgets/loading_widgets.dart
+gradeway/frontend/widgets/navigation_bar.dart
+gradeway/frontend/widgets/page_option.dart
+gradeway/frontend/widgets/profile_picture.dart
+gradeway/frontend/widgets/round_card.dart
+gradeway/frontend/widgets/scroll_button.dart
+gradeway/frontend/widgets/selector.dart
+gradeway/frontend/widgets/table_view.dart
+gradeway/frontend/widgets/title_card.dart
+gradeway/main.dart
+grayscale
+handleTextScaleFactorChanged
+hideUpgradeBanner
+imagpart
+incrementGradeCheck
+isGradeNew
+keyPoints
+keypoints
+listenToGradeUpdates
+loadAllGrades
+local_auth plugin requires a foreground activity
+magnificationScale
+maybeTextScaleFactorOf
+onDatabaseDowngradeDelete
+onDatabaseDowngradeDoDelete
+onDowngrade must be null if no version is specified
+onTextScaleFactorChanged
+onUpgrade
+onUpgrade must be null if no version is specified
+openTranscript
+parseGradesForm
+parseTranscript
+plnMain_rpTranscriptGroup_LblTCreditValue_
+plnMain_rpTranscriptGroup_dgCourses_
+plnMain_rpTranscriptGroup_lblBuildingValue_
+plnMain_rpTranscriptGroup_lblGPACum1
+plnMain_rpTranscriptGroup_lblGPACum2
+plnMain_rpTranscriptGroup_lblGPARank1
+plnMain_rpTranscriptGroup_lblGradeValue_
+plnMain_rpTranscriptGroup_lblTotalCreditValue_
+plnMain_rpTranscriptGroup_lblYearValue_
+plnMain_rpTranscriptGroup_tblCumGPAInfo
+pointSpan
+pointsAtX
+pointsAtY
+pointsAtZ
+pointsatx
+pointsaty
+pointsatz
+previousGrades
+remainingPaintExtent
+runUpgradeTasks
+s now easier to calculate your GPA and get a more accurate estimate.
+scaffoldBackgroundColor
+scale
+scale 
+scaleDown
+scaleHeight
+scaleRadii
+scaleWidth
+scaled
+scaledPadding
+selectionEndpoints
+setColorCodeAssignmentGrades
+setFromTranslationRotationScale
+setHideUpgradeMessage
+sg-transcript-group
+shouldDisplayUpgrade
+showGpaWelc
+showGradeDetails
+showNoTrGpa
+spaceAround
+stopListeningToGradeUpdates
+surfaceScale
+surfacescale
+systemBackground
+t your calculated GPA until it is added.
+testing.unsafe.trace-entrypoints-fn
+textScaleFactor
+textScaleFactorOf
+thisYearGpa
+transcript
+transcriptYears
+unweighted
+unweightedGpa
+updateGpa
+updateGradeCategories
+updatePreviousGrades
+updateTranscriptConfiguration
+upgrade
+upgradeBannerKey
+upgradeapp.db
+upgrader
+upgrader.ITunesResults.description
+upgrader.ITunesResults.minAppVersion 
+upgrader.ITunesResults.releaseNotes
+upgrader.ITunesResults.trackViewUrl
+upgrader.ITunesResults.version
+upgrader.PlayStoreResults.minAppVersion 
+upgrader.dialog.title
+upgrader/src/itunes_search_api.dart
+upgrader/src/play_store_search_api.dart
+upgrader/src/upgrade_alert.dart
+upgrader/src/upgrade_base.dart
+upgrader/src/upgrade_messages.dart
+upgrader/src/upgrade_os.dart
+upgrader/src/upgrader.dart
+weighted
+weightedGpa
+yEurope/BelgradeLMT
