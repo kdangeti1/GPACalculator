@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { LogIn, ChevronRight, Calculator, Home, ArrowLeft, RefreshCw, LogOut, FileText, Bell, Calendar, User, Settings, Award, BarChart2, Star, Users, MapPin, Clock } from 'lucide-react';
 
-const API_URL = 'http://localhost:3001/api'; 
+//const API_URL = 'http://localhost:3001/api'; 
+const API_URL = 'https://gpacalculator-jysf.onrender.com';
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -21,7 +22,7 @@ export default function App() {
         setLoadingGrades(false);
       }).catch(() => setLoadingGrades(false));
     }
-  }, [session?.studentName, session?.token]); 
+  }, [session?.studentName, session?.token]);
 
   if (!session) {
     return <LoginScreen setSession={setSession} />;
@@ -33,17 +34,17 @@ export default function App() {
   }
 
   if (activeTab === 'classDetail' && selectedClass) {
-    return <ClassDetail 
+    return <ClassDetail
       session={session}
-      classInfo={selectedClass} 
-      onBack={() => { setActiveTab('grades'); setSelectedClass(null); }} 
+      classInfo={selectedClass}
+      onBack={() => { setActiveTab('grades'); setSelectedClass(null); }}
     />;
   }
 
   const initial = session.studentName ? session.studentName.charAt(0).toUpperCase() : 'S';
 
   const renderHeaderTitle = () => {
-    switch(activeTab) {
+    switch (activeTab) {
       case 'overview': return 'Overview';
       case 'grades': return 'Grades';
       case 'gpa': return 'GPA Calculator';
@@ -55,58 +56,58 @@ export default function App() {
 
   return (
     <div className="flex-col w-full min-h-screen animate-fade" style={{ paddingBottom: '90px', background: '#f6f7f9' }}>
-      
+
       {activeTab !== 'attendance' && activeTab !== 'schedule' ? (
         <nav className="navbar" style={{ background: 'var(--brand-green)', color: 'white', borderBottom: 'none', padding: '1rem 1.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <div className="flex-col">
             <span style={{ fontSize: '1.8rem', fontWeight: 800 }}>{renderHeaderTitle()}</span>
             {activeTab === 'overview' && <span className="text-small" style={{ opacity: 0.9, fontWeight: 500 }}>{session.studentName}</span>}
           </div>
-          
-          <div 
-            onClick={() => { 
-               if (session.pendingStudents && session.pendingStudents.length > 1) {
-                  setSession({ ...session, studentName: null }); setClasses([]);
-               } else {
-                  setSession(null); setClasses([]);
-               }
-            }} 
+
+          <div
+            onClick={() => {
+              if (session.pendingStudents && session.pendingStudents.length > 1) {
+                setSession({ ...session, studentName: null }); setClasses([]);
+              } else {
+                setSession(null); setClasses([]);
+              }
+            }}
             style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '1.2rem', cursor: 'pointer' }}>
-             {initial}
+            {initial}
           </div>
         </nav>
       ) : null}
-      
+
       <main className="container flex-col gap-6 pt-4 px-4 h-full" style={{ maxWidth: '600px', margin: '0 auto', flex: 1 }}>
-         {activeTab === 'overview' && <OverviewScreen setTab={setActiveTab} />}
-         {activeTab === 'grades' && <GradesScreen classes={classes} loading={loadingGrades} openClass={(c) => { setSelectedClass(c); setActiveTab('classDetail'); }} />}
-         {activeTab === 'gpa' && <GPACalculatorScreen session={session} />}
-         {activeTab === 'attendance' && <AttendanceScreen session={session} onBack={() => setActiveTab('overview')} />}
-         {activeTab === 'schedule' && <ScheduleScreen session={session} onBack={() => setActiveTab('overview')} />}
+        {activeTab === 'overview' && <OverviewScreen setTab={setActiveTab} />}
+        {activeTab === 'grades' && <GradesScreen classes={classes} loading={loadingGrades} openClass={(c) => { setSelectedClass(c); setActiveTab('classDetail'); }} />}
+        {activeTab === 'gpa' && <GPACalculatorScreen session={session} />}
+        {activeTab === 'attendance' && <AttendanceScreen session={session} onBack={() => setActiveTab('overview')} />}
+        {activeTab === 'schedule' && <ScheduleScreen session={session} onBack={() => setActiveTab('overview')} />}
       </main>
 
       <div className="bottom-nav">
-         <button className={`nav-item ${activeTab === 'overview' ? 'active' : ''}`} onClick={() => setActiveTab('overview')}>
-            <Home size={26} />
-         </button>
-         <button className={`nav-item ${activeTab === 'grades' ? 'active' : ''}`} onClick={() => setActiveTab('grades')}>
-            <Award size={26} />
-         </button>
-         <button className={`nav-item ${activeTab === 'gpa' ? 'active' : ''}`} onClick={() => setActiveTab('gpa')}>
-            <BarChart2 size={26} />
-         </button>
-         <button className={`nav-item ${activeTab === 'schedule' ? 'active' : ''}`} onClick={() => setActiveTab('schedule')}>
-            <Calendar size={26} />
-         </button>
-         <button className="nav-item" onClick={() => { 
-             if (session.pendingStudents && session.pendingStudents.length > 1) {
-                setSession({ ...session, studentName: null }); setClasses([]);
-             } else {
-                setSession(null); setClasses([]);
-             }
-         }}>
-            <Settings size={26} />
-         </button>
+        <button className={`nav-item ${activeTab === 'overview' ? 'active' : ''}`} onClick={() => setActiveTab('overview')}>
+          <Home size={26} />
+        </button>
+        <button className={`nav-item ${activeTab === 'grades' ? 'active' : ''}`} onClick={() => setActiveTab('grades')}>
+          <Award size={26} />
+        </button>
+        <button className={`nav-item ${activeTab === 'gpa' ? 'active' : ''}`} onClick={() => setActiveTab('gpa')}>
+          <BarChart2 size={26} />
+        </button>
+        <button className={`nav-item ${activeTab === 'schedule' ? 'active' : ''}`} onClick={() => setActiveTab('schedule')}>
+          <Calendar size={26} />
+        </button>
+        <button className="nav-item" onClick={() => {
+          if (session.pendingStudents && session.pendingStudents.length > 1) {
+            setSession({ ...session, studentName: null }); setClasses([]);
+          } else {
+            setSession(null); setClasses([]);
+          }
+        }}>
+          <Settings size={26} />
+        </button>
       </div>
     </div>
   );
@@ -121,9 +122,9 @@ function StudentPickerScreen({ session, setSession }) {
     try {
       const res = await axios.post(`${API_URL}/selectStudent`, { token: session.token, studentId: student.id });
       if (res.data.success) {
-         setSession({ token: session.token, studentName: student.name, pendingStudents: session.pendingStudents });
+        setSession({ token: session.token, studentName: student.name, pendingStudents: session.pendingStudents });
       } else {
-         alert('Failed to switch to ' + student.name);
+        alert('Failed to switch to ' + student.name);
       }
     } catch (e) {
       alert('Error fetching ' + student.name + "'s data.");
@@ -135,33 +136,33 @@ function StudentPickerScreen({ session, setSession }) {
   return (
     <div className="container flex-col animate-fade" style={{ minHeight: '100vh', background: '#f6f7f9', padding: '2rem 1rem' }}>
       <div className="flex-col items-center justify-center text-center gap-2 mb-8 mt-10">
-         <div style={{ background: 'var(--brand-green)', color: 'white', padding: '1rem', borderRadius: '50%' }}>
-            <Users size={32} />
-         </div>
-         <h1 className="h1 mt-2" style={{ color: '#333' }}>Select Student</h1>
-         <p className="text-secondary" style={{ maxWidth: '300px' }}>Which student profile would you like to view right now?</p>
+        <div style={{ background: 'var(--brand-green)', color: 'white', padding: '1rem', borderRadius: '50%' }}>
+          <Users size={32} />
+        </div>
+        <h1 className="h1 mt-2" style={{ color: '#333' }}>Select Student</h1>
+        <p className="text-secondary" style={{ maxWidth: '300px' }}>Which student profile would you like to view right now?</p>
       </div>
 
       <div className="flex-col gap-4" style={{ maxWidth: '400px', margin: '0 auto', width: '100%' }}>
-         {session.pendingStudents.map((student) => (
-           <div 
-             key={student.id} 
-             className="card flex-row justify-between items-center cursor-pointer" 
-             style={{ padding: '1.2rem', border: '1px solid #e2e8f0', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}
-             onClick={() => !loadingId && handleSelectStudent(student)}
-           >
-             <div className="flex-col">
-               <span className="h3" style={{ color: '#2b2b2b' }}>{student.name}</span>
-               <span className="text-small" style={{ color: 'var(--brand-green)', fontWeight: 'bold' }}>{student.grade}</span>
-             </div>
-             
-             {loadingId === student.id ? (
-               <RefreshCw className="animate-spin text-tertiary" size={20} />
-             ) : (
-               <ChevronRight className="text-tertiary" />
-             )}
-           </div>
-         ))}
+        {session.pendingStudents.map((student) => (
+          <div
+            key={student.id}
+            className="card flex-row justify-between items-center cursor-pointer"
+            style={{ padding: '1.2rem', border: '1px solid #e2e8f0', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}
+            onClick={() => !loadingId && handleSelectStudent(student)}
+          >
+            <div className="flex-col">
+              <span className="h3" style={{ color: '#2b2b2b' }}>{student.name}</span>
+              <span className="text-small" style={{ color: 'var(--brand-green)', fontWeight: 'bold' }}>{student.grade}</span>
+            </div>
+
+            {loadingId === student.id ? (
+              <RefreshCw className="animate-spin text-tertiary" size={20} />
+            ) : (
+              <ChevronRight className="text-tertiary" />
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -172,7 +173,7 @@ function OverviewScreen({ setTab }) {
   const menuItems = [
     { icon: <User className="text-brand-green" />, title: 'Attendance', desc: 'View your absences', action: 'attendance' },
     { icon: <Calendar className="text-brand-green" />, title: 'Class Schedule', desc: 'View classes and periods', action: 'schedule' },
-    { icon: <LogOut className="text-brand-green" style={{ transform: 'rotate(180deg)'}} />, title: 'Contact Teachers', desc: 'Email your teachers', action: null },
+    { icon: <LogOut className="text-brand-green" style={{ transform: 'rotate(180deg)' }} />, title: 'Contact Teachers', desc: 'Email your teachers', action: null },
     { icon: <Award className="text-brand-green" />, title: 'Progress Report', desc: 'View interim scores', action: 'grades' },
     { icon: <FileText className="text-brand-green" />, title: 'Report Card', desc: 'View reporting period scores', action: 'grades' },
     { icon: <Award className="text-brand-green" />, title: 'Transcript', desc: 'View your credits', action: 'grades' },
@@ -182,7 +183,7 @@ function OverviewScreen({ setTab }) {
     <div className="flex-col gap-3 animate-slide-up stagger-1">
       <div className="menu-card" style={{ padding: '1.2rem', borderColor: '#fcd34d', borderWidth: '2px' }} onClick={() => setTab('gpa')}>
         <div style={{ background: 'var(--brand-green)', color: 'white', padding: '0.6rem', borderRadius: '0.8rem', display: 'flex', alignItems: 'center' }}>
-           <ChevronRight style={{ transform: 'rotate(-90deg)' }} size={24} />
+          <ChevronRight style={{ transform: 'rotate(-90deg)' }} size={24} />
         </div>
         <div className="flex-col flex-1 pl-2">
           <span className="h4" style={{ fontSize: '1.2rem', color: '#333' }}>Upgrade to Premium</span>
@@ -192,18 +193,18 @@ function OverviewScreen({ setTab }) {
       </div>
 
       <div className="flex-col gap-2 mt-2 pb-10">
-         {menuItems.map((item, idx) => (
-            <div key={idx} className="menu-card" onClick={() => item.action ? setTab(item.action) : alert("Under construction")} style={{ padding: '0.8rem 1rem' }}>
-               <div style={{ background: '#e0f2e6', padding: '0.6rem', borderRadius: '0.8rem', display: 'flex', alignItems: 'center' }}>
-                  {item.icon}
-               </div>
-               <div className="flex-col flex-1 pl-2">
-                  <span className="h4" style={{ fontSize: '1.1rem', color: '#444' }}>{item.title}</span>
-                  <span className="text-small" style={{ color: '#888' }}>{item.desc}</span>
-               </div>
-               <ChevronRight style={{ color: '#ccc' }} />
+        {menuItems.map((item, idx) => (
+          <div key={idx} className="menu-card" onClick={() => item.action ? setTab(item.action) : alert("Under construction")} style={{ padding: '0.8rem 1rem' }}>
+            <div style={{ background: '#e0f2e6', padding: '0.6rem', borderRadius: '0.8rem', display: 'flex', alignItems: 'center' }}>
+              {item.icon}
             </div>
-         ))}
+            <div className="flex-col flex-1 pl-2">
+              <span className="h4" style={{ fontSize: '1.1rem', color: '#444' }}>{item.title}</span>
+              <span className="text-small" style={{ color: '#888' }}>{item.desc}</span>
+            </div>
+            <ChevronRight style={{ color: '#ccc' }} />
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -231,29 +232,29 @@ function ScheduleScreen({ session, onBack }) {
 
       <div className="flex-col gap-4 p-4 mt-2 mb-10">
         {loading ? (
-           <p className="text-center text-secondary py-10 animate-pulse">Syncing Classes...</p>
+          <p className="text-center text-secondary py-10 animate-pulse">Syncing Classes...</p>
         ) : schedule.length === 0 ? (
-           <p className="text-center text-secondary py-10">No live schedule found.</p>
+          <p className="text-center text-secondary py-10">No live schedule found.</p>
         ) : (
-           schedule.map((item, i) => (
-             <div key={i} className="card flex-col gap-2" style={{ borderLeft: '6px solid var(--brand-green)' }}>
-                <div className="flex-row justify-between items-start">
-                   <div className="flex-col">
-                      <span className="h4" style={{ color: '#333' }}>{item.description || item.course}</span>
-                      <span className="text-small font-bold" style={{ color: 'var(--brand-green)' }}>{item.teacher}</span>
-                   </div>
-                   <span className="badge" style={{ background: '#333', color: 'white' }}>P{item.period}</span>
+          schedule.map((item, i) => (
+            <div key={i} className="card flex-col gap-2" style={{ borderLeft: '6px solid var(--brand-green)' }}>
+              <div className="flex-row justify-between items-start">
+                <div className="flex-col">
+                  <span className="h4" style={{ color: '#333' }}>{item.description || item.course}</span>
+                  <span className="text-small font-bold" style={{ color: 'var(--brand-green)' }}>{item.teacher}</span>
                 </div>
-                <div className="flex-row gap-4 mt-2 pt-2" style={{ borderTop: '1px solid #eee' }}>
-                   <div className="flex-row items-center gap-1 text-small text-secondary">
-                      <MapPin size={14} /> <span>Room {item.room || 'N/A'}</span>
-                   </div>
-                   <div className="flex-row items-center gap-1 text-small text-secondary">
-                      <Clock size={14} /> <span>{item.days || 'M-F'}</span>
-                   </div>
+                <span className="badge" style={{ background: '#333', color: 'white' }}>P{item.period}</span>
+              </div>
+              <div className="flex-row gap-4 mt-2 pt-2" style={{ borderTop: '1px solid #eee' }}>
+                <div className="flex-row items-center gap-1 text-small text-secondary">
+                  <MapPin size={14} /> <span>Room {item.room || 'N/A'}</span>
                 </div>
-             </div>
-           ))
+                <div className="flex-row items-center gap-1 text-small text-secondary">
+                  <Clock size={14} /> <span>{item.days || 'M-F'}</span>
+                </div>
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>
@@ -281,30 +282,30 @@ function AttendanceScreen({ session, onBack }) {
       </nav>
 
       <div className="card text-center flex-col items-center py-6 mx-4 mt-6" style={{ background: '#1c1c1e', color: 'white', borderRadius: '1rem' }}>
-          <span className="text-body mb-1" style={{ color: '#aaa' }}>Total Absences Scanned</span>
-          <span className="badge" style={{ fontSize: '3rem', background: 'transparent', color: '#ffb347', border: '4px solid #ffb347', padding: '1rem', borderRadius: '50%', minWidth: '100px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {events.length}
-          </span>
+        <span className="text-body mb-1" style={{ color: '#aaa' }}>Total Absences Scanned</span>
+        <span className="badge" style={{ fontSize: '3rem', background: 'transparent', color: '#ffb347', border: '4px solid #ffb347', padding: '1rem', borderRadius: '50%', minWidth: '100px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {events.length}
+        </span>
       </div>
 
       <div className="flex-col gap-3 p-4 pb-10 mt-2">
         <span className="text-small font-bold px-2 text-secondary uppercase">Recent Incidents</span>
         {loading ? (
-           <p className="text-center text-secondary py-4 animate-pulse">Syncing events from school...</p>
+          <p className="text-center text-secondary py-4 animate-pulse">Syncing events from school...</p>
         ) : events.length === 0 ? (
-           <p className="text-center text-secondary py-4">You have perfect attendance!</p>
+          <p className="text-center text-secondary py-4">You have perfect attendance!</p>
         ) : (
-           events.map((evt, i) => (
-             <div key={i} className="menu-card" style={{ padding: '1rem', borderLeft: '4px solid #ffb347' }}>
-                <div style={{ background: '#fff0db', padding: '0.6rem', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', color: '#f39c12' }}>
-                  <Calendar size={24} />
-                </div>
-                <div className="flex-col flex-1 pl-2">
-                   <span className="h4" style={{ fontSize: '1rem' }}>{evt.date}</span>
-                   <span className="text-small" style={{ color: '#666' }}>{evt.reason || 'Recorded Incident'}</span>
-                </div>
-             </div>
-           ))
+          events.map((evt, i) => (
+            <div key={i} className="menu-card" style={{ padding: '1rem', borderLeft: '4px solid #ffb347' }}>
+              <div style={{ background: '#fff0db', padding: '0.6rem', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', color: '#f39c12' }}>
+                <Calendar size={24} />
+              </div>
+              <div className="flex-col flex-1 pl-2">
+                <span className="h4" style={{ fontSize: '1rem' }}>{evt.date}</span>
+                <span className="text-small" style={{ color: '#666' }}>{evt.reason || 'Recorded Incident'}</span>
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>
@@ -355,66 +356,66 @@ function GradesScreen({ classes, loading, openClass }) {
 
 // --- PROJECTED GPA CALCULATOR SCREEN ---
 function GPACalculatorScreen({ session }) {
-   const [transcriptClasses, setTranscriptClasses] = useState([]);
-   const [loading, setLoading] = useState(true);
+  const [transcriptClasses, setTranscriptClasses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-   useEffect(() => {
-     if (session && session.token) {
-        axios.get(`${API_URL}/transcript`, { 
-           headers: { Authorization: `Bearer ${session.token}` } 
-        }).then(res => {
-           setTranscriptClasses(res.data.classes || []);
-           loading !== false && setLoading(false);
-        }).catch(() => setLoading(false));
-     }
-   }, [session?.token]);
+  useEffect(() => {
+    if (session && session.token) {
+      axios.get(`${API_URL}/transcript`, {
+        headers: { Authorization: `Bearer ${session.token}` }
+      }).then(res => {
+        setTranscriptClasses(res.data.classes || []);
+        loading !== false && setLoading(false);
+      }).catch(() => setLoading(false));
+    }
+  }, [session?.token]);
 
-   if (loading) return <div className="text-center p-8 animate-pulse text-secondary">Loading Grade 9 Transcript...</div>;
+  if (loading) return <div className="text-center p-8 animate-pulse text-secondary">Loading Grade 9 Transcript...</div>;
 
-   let totalPoints = 0;
-   let validCount = 0;
+  let totalPoints = 0;
+  let validCount = 0;
 
-   const activeGPAClasses = transcriptClasses.filter(c => c.grade > 0).map(c => {
-      let pts = 0;
-      if (c.grade >= 89.5) pts = 4.0;
-      else if (c.grade >= 79.5) pts = 3.0;
-      else if (c.grade >= 69.5) pts = 2.0;
-      else if (c.grade >= 59.5) pts = 1.0;
-      
-      totalPoints += pts;
-      validCount++;
-      return { ...c, pts };
-   });
+  const activeGPAClasses = transcriptClasses.filter(c => c.grade > 0).map(c => {
+    let pts = 0;
+    if (c.grade >= 89.5) pts = 4.0;
+    else if (c.grade >= 79.5) pts = 3.0;
+    else if (c.grade >= 69.5) pts = 2.0;
+    else if (c.grade >= 59.5) pts = 1.0;
 
-   const gpa = validCount > 0 ? (totalPoints / validCount).toFixed(2) : '0.00';
+    totalPoints += pts;
+    validCount++;
+    return { ...c, pts };
+  });
 
-   return (
-      <div className="flex-col gap-6 animate-slide-up stagger-1 pb-10">
-        <div className="card text-center flex-col items-center py-8" style={{ background: '#f8fdf9', border: '2px solid #e0f2e6' }}>
-          <span className="text-body mb-2" style={{ color: '#444', fontWeight: 'bold' }}>Grade 9 Unweighted GPA</span>
-          <span style={{ fontSize: '4rem', fontWeight: 800, color: 'var(--brand-green)', lineHeight: 1 }}>
-            {gpa}
-          </span>
-          <span className="text-small mt-3 font-bold" style={{ color: '#88a' }}>Calculated from {validCount} core transcript classes.</span>
-        </div>
+  const gpa = validCount > 0 ? (totalPoints / validCount).toFixed(2) : '0.00';
 
-        <div className="flex-col gap-3 mt-2">
-           <span className="text-small font-bold px-2" style={{ color: '#999', textTransform: 'uppercase', letterSpacing: '1px' }}>Point Breakdown (Grade 9)</span>
-           {activeGPAClasses.map((cls, i) => (
-             <div key={i} className="menu-card py-4">
-               <div className="flex-col flex-1 gap-1">
-                 <span className="h4" style={{ fontSize: '0.95rem', color: '#444' }}>{cls.name}</span>
-               </div>
-               <div className="flex-row gap-4 items-center">
-                 <span className="text-body font-bold" style={{ color: '#888' }}>{cls.grade}%</span>
-                 <span className="badge" style={{ background: 'var(--brand-green)', color: 'white', minWidth: '3.5rem', textAlign: 'center', fontSize: '1rem', padding: '0.3rem' }}>{cls.pts.toFixed(1)}</span>
-               </div>
-             </div>
-           ))}
-           {activeGPAClasses.length === 0 && <div className="text-center text-secondary py-8">No numerical grades found in Grade 9.</div>}
-        </div>
+  return (
+    <div className="flex-col gap-6 animate-slide-up stagger-1 pb-10">
+      <div className="card text-center flex-col items-center py-8" style={{ background: '#f8fdf9', border: '2px solid #e0f2e6' }}>
+        <span className="text-body mb-2" style={{ color: '#444', fontWeight: 'bold' }}>Grade 9 Unweighted GPA</span>
+        <span style={{ fontSize: '4rem', fontWeight: 800, color: 'var(--brand-green)', lineHeight: 1 }}>
+          {gpa}
+        </span>
+        <span className="text-small mt-3 font-bold" style={{ color: '#88a' }}>Calculated from {validCount} core transcript classes.</span>
       </div>
-   );
+
+      <div className="flex-col gap-3 mt-2">
+        <span className="text-small font-bold px-2" style={{ color: '#999', textTransform: 'uppercase', letterSpacing: '1px' }}>Point Breakdown (Grade 9)</span>
+        {activeGPAClasses.map((cls, i) => (
+          <div key={i} className="menu-card py-4">
+            <div className="flex-col flex-1 gap-1">
+              <span className="h4" style={{ fontSize: '0.95rem', color: '#444' }}>{cls.name}</span>
+            </div>
+            <div className="flex-row gap-4 items-center">
+              <span className="text-body font-bold" style={{ color: '#888' }}>{cls.grade}%</span>
+              <span className="badge" style={{ background: 'var(--brand-green)', color: 'white', minWidth: '3.5rem', textAlign: 'center', fontSize: '1rem', padding: '0.3rem' }}>{cls.pts.toFixed(1)}</span>
+            </div>
+          </div>
+        ))}
+        {activeGPAClasses.length === 0 && <div className="text-center text-secondary py-8">No numerical grades found in Grade 9.</div>}
+      </div>
+    </div>
+  );
 }
 
 
@@ -432,12 +433,12 @@ function LoginScreen({ setSession }) {
       const res = await axios.post(`${API_URL}/login`, { districtUrl: district, username, password });
       if (res.data.success) {
         if (res.data.students && res.data.students.length > 0) {
-           setSession({ token: res.data.token, pendingStudents: res.data.students });
+          setSession({ token: res.data.token, pendingStudents: res.data.students });
         } else {
-           setSession({ token: res.data.token, studentName: 'Student' });
+          setSession({ token: res.data.token, studentName: 'Student' });
         }
       } else {
-         alert(res.data.error || 'Login failed.');
+        alert(res.data.error || 'Login failed.');
       }
     } catch (err) {
       alert(`Login failed: ${err.message}`);
@@ -500,8 +501,8 @@ function ClassDetail({ session, classInfo, onBack }) {
 
   let earned = 0; let max = 0;
   dummyAssignments.forEach((a, i) => {
-     let v = whatIfGrades[i] !== undefined ? whatIfGrades[i] : (a.grade || a.earned);
-     if (!isNaN(v)) { earned += v; max += a.max; }
+    let v = whatIfGrades[i] !== undefined ? whatIfGrades[i] : (a.grade || a.earned);
+    if (!isNaN(v)) { earned += v; max += a.max; }
   });
   const projectedGrade = max > 0 ? (earned / max) * 100 : classInfo.grade;
 
@@ -514,7 +515,7 @@ function ClassDetail({ session, classInfo, onBack }) {
       </nav>
 
       <div className="container flex-col gap-6 pt-4 px-4 overflow-y-auto w-full max-w-[600px] mx-auto" style={{ maxWidth: '600px', margin: '0 auto' }}>
-        
+
         <div className="card text-center flex-col items-center py-8" style={{ background: '#111', color: 'white', borderRadius: '1.5rem', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}>
           <span className="text-body mb-2" style={{ color: '#aaa', fontWeight: 'bold' }}>What If Calculator</span>
           <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -523,34 +524,34 @@ function ClassDetail({ session, classInfo, onBack }) {
             </span>
           </div>
           {Object.keys(whatIfGrades).length > 0 && (
-             <span className="badge mt-4" style={{ background: 'var(--brand-green)', color: 'white', padding: '0.4rem 1rem' }}>
-                Grades Modified
-             </span>
+            <span className="badge mt-4" style={{ background: 'var(--brand-green)', color: 'white', padding: '0.4rem 1rem' }}>
+              Grades Modified
+            </span>
           )}
         </div>
 
         <div className="flex-col gap-3 mt-2">
-           <span className="text-small font-bold px-2" style={{ color: '#999', textTransform: 'uppercase', letterSpacing: '1px' }}>Assignments</span>
-           {loading && <p className="text-secondary text-center py-4">Scanning assignments...</p>}
-           {!loading && dummyAssignments.map((a, i) => (
-             <div key={i} className="menu-card py-4" style={{ background: 'white', borderRadius: '1rem' }}>
-               <div className="flex-col flex-1">
-                 <span className="h4" style={{ fontSize: '1.05rem', color: '#444' }}>{a.name || a.title}</span>
-                 <span className="text-small" style={{ color: '#888' }}>Max Points: {a.max}</span>
-               </div>
-               <div className="flex-row items-center gap-2">
-                 <input 
-                   type="number"
-                   className="input-field"
-                   style={{ width: '70px', textAlign: 'center', fontWeight: 'bold', border: '2px solid #e0f2e6', background: '#f8fdf9', padding: '0.5rem', borderRadius: '0.5rem' }}
-                   placeholder={a.grade || a.earned}
-                   onChange={(e) => handleWhatIf(i, e.target.value)}
-                   value={whatIfGrades[i] !== undefined ? whatIfGrades[i] : ''}
-                 />
-                 <span style={{ color: '#888', fontWeight: 'bold' }}>/ {a.max}</span>
-               </div>
-             </div>
-           ))}
+          <span className="text-small font-bold px-2" style={{ color: '#999', textTransform: 'uppercase', letterSpacing: '1px' }}>Assignments</span>
+          {loading && <p className="text-secondary text-center py-4">Scanning assignments...</p>}
+          {!loading && dummyAssignments.map((a, i) => (
+            <div key={i} className="menu-card py-4" style={{ background: 'white', borderRadius: '1rem' }}>
+              <div className="flex-col flex-1">
+                <span className="h4" style={{ fontSize: '1.05rem', color: '#444' }}>{a.name || a.title}</span>
+                <span className="text-small" style={{ color: '#888' }}>Max Points: {a.max}</span>
+              </div>
+              <div className="flex-row items-center gap-2">
+                <input
+                  type="number"
+                  className="input-field"
+                  style={{ width: '70px', textAlign: 'center', fontWeight: 'bold', border: '2px solid #e0f2e6', background: '#f8fdf9', padding: '0.5rem', borderRadius: '0.5rem' }}
+                  placeholder={a.grade || a.earned}
+                  onChange={(e) => handleWhatIf(i, e.target.value)}
+                  value={whatIfGrades[i] !== undefined ? whatIfGrades[i] : ''}
+                />
+                <span style={{ color: '#888', fontWeight: 'bold' }}>/ {a.max}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
