@@ -358,6 +358,7 @@ function GradesScreen({ classes, loading, openClass }) {
 function GPACalculatorScreen({ session }) {
   const [transcriptClasses, setTranscriptClasses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isWeighted, setIsWeighted] = useState(true);
 
   useEffect(() => {
     if (session && session.token) {
@@ -372,43 +373,141 @@ function GPACalculatorScreen({ session }) {
 
   if (loading) return <div className="text-center p-8 animate-pulse text-secondary">Loading Grade 9 Transcript...</div>;
 
-  let totalPoints = 0;
+  let totalWeightedPoints = 0;
+  let totalUnweightedPoints = 0;
   let validCount = 0;
 
   const activeGPAClasses = transcriptClasses.filter(c => c.grade > 0).map(c => {
-    let pts = 0;
-    if (c.grade >= 89.5) pts = 4.0;
-    else if (c.grade >= 79.5) pts = 3.0;
-    else if (c.grade >= 69.5) pts = 2.0;
-    else if (c.grade >= 59.5) pts = 1.0;
+    const nameUpper = c.name.toUpperCase();
+    let level = 'Regular';
+    let wPts = 0.0;
+    let uPts = 0.0;
 
-    totalPoints += pts;
+    // 1. Unweighted Scale (Standard Categorical)
+    if (c.grade >= 89.5) uPts = 4.0;
+    else if (c.grade >= 79.5) uPts = 3.0;
+    else if (c.grade >= 69.5) uPts = 2.0;
+    else uPts = 0.0;
+
+    // 2. Weighted Scale (RRISD Granular 100-Point System)
+    if (c.grade >= 69.5) {
+      if (nameUpper.includes('AP ') || nameUpper.includes('IB ') || nameUpper.includes('ONRAMPS') || nameUpper.startsWith('AP') || nameUpper.startsWith('IB')) {
+        level = 'AP/IB';
+        wPts = (c.grade / 10) - 4.0; // Level I (6.0 Max Scale)
+      } else if (nameUpper.includes('HONORS') || nameUpper.includes('ADV') || nameUpper.includes('PREAP') || nameUpper.includes('PRE-AP') || nameUpper.includes('DUAL CREDIT')) {
+        level = 'Advanced';
+        wPts = (c.grade / 10) - 5.0; // Level II (5.0 Max Scale)
+      } else {
+        level = 'Regular';
+        wPts = (c.grade / 10) - 6.0; // Level III (4.0 Max Scale)
+      }
+    } else {
+      wPts = 0.0;
+    }
+
+    wPts = parseFloat(wPts.toFixed(2));
+    uPts = parseFloat(uPts.toFixed(2));
+
+    totalWeightedPoints += wPts;
+    totalUnweightedPoints += uPts;
     validCount++;
-    return { ...c, pts };
+
+    return {
+      ...c,
+      level,
+      wPts,
+      uPts,
+      pts: isWeighted ? wPts : uPts
+    };
   });
 
-  const gpa = validCount > 0 ? (totalPoints / validCount).toFixed(2) : '0.00';
+  const weightedGpa = validCount > 0 ? (totalWeightedPoints / validCount).toFixed(2) : '0.00';
+  const unweightedGpa = validCount > 0 ? (totalUnweightedPoints / validCount).toFixed(2) : '0.00';
+  const displayGpa = isWeighted ? weightedGpa : unweightedGpa;
 
   return (
     <div className="flex-col gap-6 animate-slide-up stagger-1 pb-10">
-      <div className="card text-center flex-col items-center py-8" style={{ background: '#f8fdf9', border: '2px solid #e0f2e6' }}>
-        <span className="text-body mb-2" style={{ color: '#444', fontWeight: 'bold' }}>Grade 9 Unweighted GPA</span>
-        <span style={{ fontSize: '4rem', fontWeight: 800, color: 'var(--brand-green)', lineHeight: 1 }}>
-          {gpa}
-        </span>
-        <span className="text-small mt-3 font-bold" style={{ color: '#88a' }}>Calculated from {validCount} core transcript classes.</span>
+      
+      {/* GPA Type Toggle Tab */}
+      <div className="flex-row gap-2" style={{ background: '#e2e8f0', padding: '0.3rem', borderRadius: '0.8rem', width: '100%', maxWidth: '280px', margin: '0 auto', display: 'flex', flexDirection: 'row' }}>
+        <button 
+          onClick={() => setIsWeighted(true)}
+          style={{ 
+             flex: 1, 
+             padding: '0.5rem 1rem', 
+             borderRadius: '0.6rem', 
+             border: 'none', 
+             background: isWeighted ? 'var(--brand-green)' : 'transparent', 
+             color: isWeighted ? 'white' : '#666', 
+             fontWeight: 'bold', 
+             cursor: 'pointer',
+             transition: 'all 0.2s ease',
+             textAlign: 'center'
+          }}
+        >
+          Weighted
+        </button>
+        <button 
+          onClick={() => setIsWeighted(false)}
+          style={{ 
+             flex: 1, 
+             padding: '0.5rem 1rem', 
+             borderRadius: '0.6rem', 
+             border: 'none', 
+             background: !isWeighted ? 'var(--brand-green)' : 'transparent', 
+             color: !isWeighted ? 'white' : '#666', 
+             fontWeight: 'bold', 
+             cursor: 'pointer',
+             transition: 'all 0.2s ease',
+             textAlign: 'center'
+          }}
+        >
+          Unweighted
+        </button>
       </div>
 
+      {/* GPA Display Card */}
+      <div className="card text-center flex-col items-center py-8" style={{ background: '#f8fdf9', border: '2px solid #e0f2e6' }}>
+        <span className="text-body mb-2" style={{ color: '#444', fontWeight: 'bold' }}>
+          Grade 9 {isWeighted ? 'Weighted' : 'Unweighted'} GPA
+        </span>
+        <span style={{ fontSize: '4rem', fontWeight: 800, color: 'var(--brand-green)', lineHeight: 1 }}>
+          {displayGpa}
+        </span>
+        <span className="text-small mt-3 font-bold" style={{ color: '#88a' }}>
+          Calculated from {validCount} core transcript classes.
+        </span>
+      </div>
+
+      {/* Course Points Break-down */}
       <div className="flex-col gap-3 mt-2">
-        <span className="text-small font-bold px-2" style={{ color: '#999', textTransform: 'uppercase', letterSpacing: '1px' }}>Point Breakdown (Grade 9)</span>
+        <span className="text-small font-bold px-2" style={{ color: '#999', textTransform: 'uppercase', letterSpacing: '1px' }}>
+          Point Breakdown (Grade 9)
+        </span>
         {activeGPAClasses.map((cls, i) => (
-          <div key={i} className="menu-card py-4">
-            <div className="flex-col flex-1 gap-1">
+          <div key={i} className="menu-card py-4" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div className="flex-col flex-1 gap-1" style={{ display: 'flex', flexDirection: 'column' }}>
               <span className="h4" style={{ fontSize: '0.95rem', color: '#444' }}>{cls.name}</span>
+              <div className="flex-row gap-2 items-center" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem' }}>
+                <span className="badge" style={{ 
+                  fontSize: '0.75rem', 
+                  padding: '0.1rem 0.5rem', 
+                  borderRadius: '0.4rem',
+                  background: cls.level === 'AP/IB' ? '#e0f2fe' : cls.level === 'Advanced' ? '#fef3c7' : '#f1f5f9',
+                  color: cls.level === 'AP/IB' ? '#0369a1' : cls.level === 'Advanced' ? '#b45309' : '#475569',
+                  fontWeight: 'bold'
+                }}>
+                  {cls.level}
+                </span>
+                <span style={{ color: '#aaa', fontSize: '0.8rem' }}>•</span>
+                <span className="text-small" style={{ color: '#888', fontSize: '0.8rem' }}>Credit: {cls.credit || 0.5}</span>
+              </div>
             </div>
-            <div className="flex-row gap-4 items-center">
+            <div className="flex-row gap-4 items-center" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem' }}>
               <span className="text-body font-bold" style={{ color: '#888' }}>{cls.grade}%</span>
-              <span className="badge" style={{ background: 'var(--brand-green)', color: 'white', minWidth: '3.5rem', textAlign: 'center', fontSize: '1rem', padding: '0.3rem' }}>{cls.pts.toFixed(1)}</span>
+              <span className="badge" style={{ background: 'var(--brand-green)', color: 'white', minWidth: '3.5rem', textAlign: 'center', fontSize: '1rem', padding: '0.3rem', borderRadius: '0.5rem', fontWeight: 'bold' }}>
+                {cls.pts.toFixed(1)}
+              </span>
             </div>
           </div>
         ))}
