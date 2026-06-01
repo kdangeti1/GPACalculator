@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        
+    
+    
+
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <title>Interim Progress Report</title>
+        
+
+        <!-- 3rd party CSS our globals override -->
+<link  href="/HomeAccess/Stylesheets/Themes/Base/css?v=tw0njYZqSOVYHn_D3DhCDTytd6fBWpHQgVTAo5eiREQ1" type="text/css" rel="stylesheet" />
+<link  href="/HomeAccess/Stylesheets/SunGard/sungard-font-awesome.css" type="text/css" rel="stylesheet" />
+
+        <link  href="/HomeAccess/Stylesheets/Trirand/ui.jqgrid.css" type="text/css" rel="stylesheet" />
+
+    
+        <!-- Our globals -->
+        <link  href="/HomeAccess/eSchoolPLUSResource/GetEmbeddedStyle?file=CrossSite" type="text/css" rel="stylesheet" />
+
+        <link  href="/HomeAccess/Stylesheets/Site.css" type="text/css" rel="stylesheet" />
+
+        <link href="/HomeAccess/Media/Themes/Base/Common/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+        <!-- Our shared -->
+        <link  href="/HomeAccess/eSchoolPLUSResource/GetEmbeddedStyle?file=ComboBox" type="text/css" rel="stylesheet" />
+
+        <link  href="/HomeAccess/Stylesheets/Common/Navigation.css" type="text/css" rel="stylesheet" />
+
+        <link  href="/HomeAccess/Stylesheets/Common/font-awesome.css" type="text/css" rel="stylesheet" />
+
+    
+        <!-- JS -->
+        
+    <link  href="/HomeAccess/Stylesheets/Frame/Frame?v=55RUvMo26oV-2EIosM3TL5BiLxNJOlGs7SN-yQzztWM1" type="text/css" rel="stylesheet" />
+
+<link href="/HomeAccess/eSchoolPLUSResource/GetEmbeddedStyle?file=SessionTracking" rel="stylesheet" />
+    
+    
+
+
+
+        <script type="text/javascript" nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/Scripts/libs/modernizr-2.8.3.js"></script>
+
+        <script type="text/javascript" nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/Scripts/Common/BrowserTest.js"></script>
+
+        <script nonce="R6FuWMCX8AIJYmzESXKM//m9" type="text/javascript">
+            if (!BrowserTest()) {
+                document.location = '/HomeAccess/' + 'BrowserReject'; // Done because browsers that vail won't support jQuery
+            }
+        </script>
+            
+        <script type="text/javascript" nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/Scripts/libs/jquery?v=qIcuP3UP_aRnf7YSojJ0X96urcPMuU40OLTAhIFZUhU1"></script>
+
+
+        <script type="text/javascript" nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/Scripts/Trirand/ui.multiselect.js"></script>
+
+        <script type="text/javascript" nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/Scripts/Trirand/i18n/grid.locale-en.js"></script>
+
+        <script type="text/javascript" nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/Scripts/Trirand/jquery.jqGrid.js"></script>
+
+
+
+        <script nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=SungardCommon" type="text/javascript"></script>
+        <script nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=Combobox" type="text/javascript"></script>
+
+        <script type="text/javascript" nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/Scripts/Common/HAC.js"></script>
+
+        <script nonce="R6FuWMCX8AIJYmzESXKM//m9" type="text/javascript">
+            $(function () {
+                    parseForComboBoxes();
+
+                SunGard.Hac.Area('');
+                SunGard.Hac.Controller('Grades');
+                SunGard.Hac.Action('IPR');
+
+                SunGard.Common.Init('/HomeAccess/');
+                SunGard.Hac.Init('/HomeAccess/');
+            });
+        </script>
+   
+        <!-- Gainsights Logic -->
+            <!-- Gainsight PX Tag-->
+            <script nonce="R6FuWMCX8AIJYmzESXKM//m9" type="text/javascript">
+                        (function (n, t, a, e, co) {
+                            var i = "aptrinsic"; n[i] = n[i] || function () {
+                                (n[i].q = n[i].q || []).push(arguments)
+                            }, n[i].p = e; n[i].c = co;
+                            var r = t.createElement("script"); r.async = !0, r.src = a + "?a=" + e;
+                            var c = t.getElementsByTagName("script")[0]; c.parentNode.insertBefore(r, c)
+                        })(window, document, "https://web-sdk-us2.aptrinsic.com/api/aptrinsic.js", "AP-YDUVDTYHCH0C-2" + '');
+            </script>
+            <!-- Gainsight PX Tag-->
+                <script nonce="R6FuWMCX8AIJYmzESXKM//m9" type="text/javascript">
+                    //Make Identify Call:
+                    aptrinsic("identify",
+                        {
+                            //User Fields
+                            "id": 'ESP-HAC-' + '00409727b0c16dec38354e104b03600839caf84d00697035d9aecb05771a2a95',
+                            "role": 'Parent'
+                        },
+                        {
+                            //Account Fields
+                            "id": '503877412', // need to get district id
+                            "name": 'Round Rock ISD',
+                            "siteCode": 'RRK',
+                            "productVersion": '21_4',
+                            "stateCode": ''
+                        });
+                </script>
+
+        <!-- This should be at the bottom of this section -->
+        
+    <script nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=SungardCommon" type="text/javascript"></script>
+    <script type="text/javascript" nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/Scripts/Frame/Frame?v=1u9U5AXsn-Es4rBPNTMVm2UiMdW1xGOw3HiHDq7e3hk1"></script>
+
+    <script nonce="R6FuWMCX8AIJYmzESXKM//m9" src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=SessionTracking" type="text/javascript"></script>
+
+    <script nonce="R6FuWMCX8AIJYmzESXKM//m9">
+        $(function() {
+            var timeout = 1200;
+            var expireAfter = 1197.453087;
+            var showBefore = 120;
+            var redirectUrl = "/HomeAccess/Account/TimedOut";
+            var settingsOverride = {
+                captionText: null,
+                renewText: null,
+                ignoreText: null
+            };
+
+            SunGard.Common.SessionTracking.Init(timeout, expireAfter, showBefore, redirectUrl, settingsOverride);
+        });
+    </script>
+
+    <style >
+        .sg-asp-table th,
+        .sg-asp-table-header-row,
+        .sg-banner-logo-color,
+        .sg-hac-submenu,
+        .ui-jqgrid-view .ui-jqgrid-hdiv,
+        .ui-jqgrid tr.ui-jqgrid-labels th  { /* asp datatables dont produce th elements, only td. Use this class to index the header rows */
+            background-color: white   ;
+            color: #066868  
+        }
+        .sg-asp-table-header-row a,
+        .sg-banner-text-color {
+            color: #066868  
+        }
+    </style>
+
+    <!-- This should be at the bottom of this section -->
+    
+    <script nonce="R6FuWMCX8AIJYmzESXKM//m9">
+        $(SunGard.Hac.Frame.Init);
+        $(function() {
+            var helpUrl = '/HomeAccess/HelpTAC/Default.htm';
+            SunGard.Hac.Frame.Banner.Init();
+        });
+    </script>
+
+    <!-- This should be at the bottom of this section -->
+    
+
+
+
+
+    </head>
+    <!-- add webkit-overflow to fix scrolling on IOS Devices-->
+    <body style="-webkit-overflow-scrolling: touch;">
+        
+
+
+
+
+
+
+    <div class="sg-main-header">
+        
+
+
+
+
+<div class="sg-banner sg-banner-logo-color" data-contact-id="648676" data-student-id="187976">
+
+
+ <img src="https://hac.roundrockisd.org/newRRISD-02.jpg" alt="Round Rock ISD" class="sg-banner-left"  /> 
+
+    <div class="sg-banner-right">
+        <div class="sg-banner-menu-container">
+            <div class="sg-banner-menu-left"></div>
+            <ul class="sg-banner-menu">
+                <li class="sg-banner-menu-element sg-menu-element-identity">
+                    <span>Kiran Kumar Dangeti</span>
+                    <ul class="sg-banner-submenu">
+                            <li><a href="/HomeAccess/Account/Alerts">My Alerts</a></li>
+                        <li><a href="/HomeAccess/Account/Details">My Account</a></li>
+                    </ul>
+                </li>
+
+                <li class="sg-banner-menu-divider"></li>
+                <li class="sg-banner-menu-element sg-menu-element-logoff"><a href="/HomeAccess/Account/Logoff">Logout</a></li>
+            </ul>
+            <div class="sg-banner-menu-right"></div>
+        </div>
+            <div class="sg-banner-chooser">
+                <span class="sg-banner-learning-location"></span>
+                <span class="sg-banner-text sg-banner-text-color sg-add-change-student" title="Change Student">Dhanya Dangeti</span>
+                        <i class="fa fa-chevron-circle-down sg-add-change-student" title="Change Student"></i>
+
+            </div>
+    </div>
+</div>
+<script nonce="R6FuWMCX8AIJYmzESXKM//m9" type="text/javascript">
+    $(function () {
+        SunGard.Common.AddResource('Cancel', 'Cancel');
+        SunGard.Common.AddResource('Submit', 'Submit');
+        SunGard.Common.AddResource('EnrollNewStudent', 'Enroll New Student');
+        SunGard.Common.AddResource('ChangeStudentTitle', 'Choose Your Student');
+    })
+</script>
+        
+
+<script nonce="R6FuWMCX8AIJYmzESXKM//m9">
+        $(function() {
+            $('#hac-Home').click(function() { window.location = '/HomeAccess/Home/Home'; });
+        });
+            $(function () {
+                $('#hac-nav-submenu-Home-WeekView').click(function () { window.location = '/HomeAccess/Home/WeekView'; });
+                $('#hac-Home').on('keypress', function(e) { if (e.which == 13) { window.location = '/HomeAccess/Home/Home'; } });
+            });
+            $(function () {
+                $('#hac-nav-submenu-Home-Calendar').click(function () { window.location = '/HomeAccess/Home/Calendar'; });
+                $('#hac-Home').on('keypress', function(e) { if (e.which == 13) { window.location = '/HomeAccess/Home/Home'; } });
+            });
+        $(function() {
+            $('#hac-Attendance').click(function() { window.location = '/HomeAccess/Attendance'; });
+        });
+            $(function () {
+                $('#hac-nav-submenu-Attendance-MonthView').click(function () { window.location = '/HomeAccess/Attendance/MonthView'; });
+                $('#hac-Attendance').on('keypress', function(e) { if (e.which == 13) { window.location = '/HomeAccess/Attendance'; } });
+            });
+        $(function() {
+            $('#hac-Classes').click(function() { window.location = '/HomeAccess/Classes'; });
+        });
+            $(function () {
+                $('#hac-nav-submenu-Classes-Classwork').click(function () { window.location = '/HomeAccess/Classes/Classwork'; });
+                $('#hac-Classes').on('keypress', function(e) { if (e.which == 13) { window.location = '/HomeAccess/Classes'; } });
+            });
+            $(function () {
+                $('#hac-nav-submenu-Classes-Schedule').click(function () { window.location = '/HomeAccess/Classes/Schedule'; });
+                $('#hac-Classes').on('keypress', function(e) { if (e.which == 13) { window.location = '/HomeAccess/Classes'; } });
+            });
+        $(function() {
+            $('#hac-Grades').click(function() { window.location = '/HomeAccess/Grades'; });
+        });
+            $(function () {
+                $('#hac-nav-submenu-Grades-IPR').click(function () { window.location = '/HomeAccess/Grades/IPR'; });
+                $('#hac-Grades').on('keypress', function(e) { if (e.which == 13) { window.location = '/HomeAccess/Grades'; } });
+            });
+            $(function () {
+                $('#hac-nav-submenu-Grades-ReportCard').click(function () { window.location = '/HomeAccess/Grades/ReportCard'; });
+                $('#hac-Grades').on('keypress', function(e) { if (e.which == 13) { window.location = '/HomeAccess/Grades'; } });
+            });
+            $(function () {
+                $('#hac-nav-submenu-Grades-TestScores').click(function () { window.location = '/HomeAccess/Grades/TestScores'; });
+                $('#hac-Grades').on('keypress', function(e) { if (e.which == 13) { window.location = '/HomeAccess/Grades'; } });
+            });
+            $(function () {
+                $('#hac-nav-submenu-Grades-TXTestScores').click(function () { window.location = '/HomeAccess/Grades/TXTestScores'; });
+                $('#hac-Grades').on('keypress', function(e) { if (e.which == 13) { window.location = '/HomeAccess/Grades'; } });
+            });
+        $(function() {
+            $('#hac-Registration').click(function() { window.location = '/HomeAccess/Registration'; });
+        });
+            $(function () {
+                $('#hac-nav-submenu-Registration-Demographic').click(function () { window.location = '/HomeAccess/Registration/Demographic'; });
+                $('#hac-Registration').on('keypress', function(e) { if (e.which == 13) { window.location = '/HomeAccess/Registration'; } });
+            });
+</script>
+
+<div id="hac-nav-menu" class ="sg-hac-menu">
+    <div class="sg-hac-menu-options">
+            <div id="hac-Home" class="sg-hac-menu-option" tabindex="0" role="link" subDiv="#hac-nav-submenu-Home-options">
+                <img alt="Home" src="/HomeAccess/Media/images/Menu/hac-Home.png" />
+                <span>Home</span> 
+            </div>
+            <div id="hac-Attendance" class="sg-hac-menu-option" tabindex="0" role="link" subDiv="#hac-nav-submenu-Attendance-options">
+                <img alt="Attendance" src="/HomeAccess/Media/images/Menu/hac-Attendance.png" />
+                <span>Attendance</span> 
+            </div>
+            <div id="hac-Classes" class="sg-hac-menu-option" tabindex="0" role="link" subDiv="#hac-nav-submenu-Classes-options">
+                <img alt="Classes" src="/HomeAccess/Media/images/Menu/hac-Classes.png" />
+                <span>Classes</span> 
+            </div>
+            <div id="hac-Grades" class="sg-hac-menu-option sg-hac-menu-option-selected" tabindex="0" role="link" subDiv="#hac-nav-submenu-Grades-options">
+                <img alt="Grades" src="/HomeAccess/Media/images/Menu/hac-Grades.png" />
+                <span>Grades</span> 
+            </div>
+            <div id="hac-Registration" class="sg-hac-menu-option" tabindex="0" role="link" subDiv="#hac-nav-submenu-Registration-options">
+                <img alt="Registration" src="/HomeAccess/Media/images/Menu/hac-Registration.png" />
+                <span>Registration</span> 
+            </div>
+    </div>
+</div>
+<div id="hac-nav-submenu" class="sg-hac-submenu">
+    <div id="hac-nav-submenu-Home-options" class="sg-hac-submenu-options" style="display:none;">
+            <div id="hac-nav-submenu-Home-WeekView" class="sg-hac-submenu-option">
+                <span>Week View</span>
+            </div>
+            <div id="hac-nav-submenu-Home-Calendar" class="sg-hac-submenu-option">
+                <span>Calendar</span>
+            </div>
+    </div>
+    <div id="hac-nav-submenu-Attendance-options" class="sg-hac-submenu-options" style="display:none;">
+            <div id="hac-nav-submenu-Attendance-MonthView" class="sg-hac-submenu-option">
+                <span>Month View</span>
+            </div>
+    </div>
+    <div id="hac-nav-submenu-Classes-options" class="sg-hac-submenu-options" style="display:none;">
+            <div id="hac-nav-submenu-Classes-Classwork" class="sg-hac-submenu-option">
+                <span>Classwork</span>
+            </div>
+            <div id="hac-nav-submenu-Classes-Schedule" class="sg-hac-submenu-option">
+                <span>Schedule</span>
+            </div>
+    </div>
+    <div id="hac-nav-submenu-Grades-options" class="sg-hac-submenu-options" style="">
+            <div id="hac-nav-submenu-Grades-IPR" class="sg-hac-submenu-option sg-hac-submenu-option-selected">
+                <span>IPR</span>
+            </div>
+            <div id="hac-nav-submenu-Grades-ReportCard" class="sg-hac-submenu-option">
+                <span>Report Card</span>
+            </div>
+            <div id="hac-nav-submenu-Grades-TestScores" class="sg-hac-submenu-option">
+                <span>Test Scores</span>
+            </div>
+            <div id="hac-nav-submenu-Grades-TXTestScores" class="sg-hac-submenu-option">
+                <span>Texas Test Scores</span>
+            </div>
+    </div>
+    <div id="hac-nav-submenu-Registration-options" class="sg-hac-submenu-options" style="display:none;">
+            <div id="hac-nav-submenu-Registration-Demographic" class="sg-hac-submenu-option">
+                <span>Demographic</span>
+            </div>
+    </div>
+</div>
+    </div>
+
+    
+
+
+<div id="MainContent" class="sg-main-content">
+    
+
+    <div style="display: none;" id="session-block">
+    </div>
+    <div id="session-container" style="display: none;" class="sg-container" id="TimedOutSectionContainer">
+        <div class="sg-header">
+		    <img class="sg-header-image" src="/HomeAccess/Media/Themes/Base/Headers/header-session-expire.png" alt="Session Timed Out" />
+		    <span class="sg-header-heading">Session Warning</span>
+        </div>
+        <div class="sg-container-content" id="session-background">
+            <p>Your session is about to expire.  Unsaved changes will be lost.</p>
+            <div id="session-buttons" class="sg-container-button">
+                <button Name="session-renew" Value="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="session-renew"><span class="ui-button-text">Keep session open</span></button>
+                <button Name="session-ignore" Value="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="session-ignore"><span class="ui-button-text">Ignore</span></button>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<iframe src="/HomeAccess/Content/Student/InterimProgress.aspx" id="sg-legacy-iframe" class="sg-legacy-iframe" allowtransparency=true frameborder=0 scrolling="no" seamless="seamless"></iframe>
+
+
+
+
+<input name="__RequestVerificationToken" type="hidden" value="RrS-Pdq27ST4HZYpcfWPYyt0WIN3qUXdZCktUmsXBXjxe02Hh-oWlIPHHsphxaECiWzUyLgEzDkn8xyrwdJKSUxMCUZtKdc_DZA99vzw9ko1" />
+</div>
+
+
+    <div class="sg-main-footer">
+        <span class="sg-hac-footer-logo"></span>
+<span class="sg-hac-copyright">&copy; 2003 - 2026 PowerSchool.  All Rights Reserved.</span>
+<span class=" sg-hac-footer-links">
+        <a href="javascript:SunGard.Hac.Frame.Footer.DisplayFooterPopup('/HomeAccess/Frame/PrivacyPolicy', 'Privacy Policy')">
+            Privacy Policy
+        </a>
+
+        <a href="javascript:SunGard.Hac.Frame.Footer.DisplayFooterPopup('/HomeAccess/Frame/TermsOfUse', 'Terms of Use')">
+            Terms of Use
+        </a>
+</span>
+
+    </div>
+
+    
+
+
+
+        
+        <script nonce="R6FuWMCX8AIJYmzESXKM//m9">
+            $(function() {
+                // Build the jQuery UI buttons
+                $('.sg-buttonset').controlgroup();
+                $('.sg-button').button();
+            })
+        </script>
+    </body>
+    
+    
+    
+
+
+</html>

@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        
+    
+    
+
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <title>Schedule</title>
+        
+
+        <!-- 3rd party CSS our globals override -->
+<link  href="/HomeAccess/Stylesheets/Themes/Base/css?v=ErOiUuOsVp6tquD2fInmzTQl3A3SlFxTXp8j5mZ8LI01" type="text/css" rel="stylesheet" />
+<link  href="/HomeAccess/Stylesheets/SunGard/sungard-font-awesome.css" type="text/css" rel="stylesheet" />
+
+        <link  href="/HomeAccess/Stylesheets/Trirand/ui.jqgrid.css" type="text/css" rel="stylesheet" />
+
+    
+        <!-- Our globals -->
+        <link  href="/HomeAccess/eSchoolPLUSResource/GetEmbeddedStyle?file=CrossSite" type="text/css" rel="stylesheet" />
+
+        <link  href="/HomeAccess/Stylesheets/Site.css" type="text/css" rel="stylesheet" />
+
+        <link href="/HomeAccess/Media/Themes/Base/Common/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+        <!-- Our shared -->
+        <link  href="/HomeAccess/eSchoolPLUSResource/GetEmbeddedStyle?file=ComboBox" type="text/css" rel="stylesheet" />
+
+        <link  href="/HomeAccess/Stylesheets/Common/Navigation.css" type="text/css" rel="stylesheet" />
+
+        <link  href="/HomeAccess/Stylesheets/Common/font-awesome.css" type="text/css" rel="stylesheet" />
+
+    
+        <!-- JS -->
+        
+    <link  href="/HomeAccess/Stylesheets/Frame/Frame?v=AjGyDRWG3x0O3DcOMoysQr8kJ-JfAxUwUGUql0FcBW01" type="text/css" rel="stylesheet" />
+
+<link href="/HomeAccess/eSchoolPLUSResource/GetEmbeddedStyle?file=SessionTracking" rel="stylesheet" />
+    
+    
+
+
+
+        <script type="text/javascript" nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/Scripts/libs/modernizr-2.8.3.js"></script>
+
+        <script type="text/javascript" nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/Scripts/Common/BrowserTest.js"></script>
+
+        <script nonce="DrfFExR2n1It09Wnb1u6qOht" type="text/javascript">
+            if (!BrowserTest()) {
+                document.location = '/HomeAccess/' + 'BrowserReject'; // Done because browsers that vail won't support jQuery
+            }
+        </script>
+            
+        <script type="text/javascript" nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/Scripts/libs/jquery?v=qIcuP3UP_aRnf7YSojJ0X96urcPMuU40OLTAhIFZUhU1"></script>
+
+
+        <script type="text/javascript" nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/Scripts/Trirand/ui.multiselect.js"></script>
+
+        <script type="text/javascript" nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/Scripts/Trirand/i18n/grid.locale-en.js"></script>
+
+        <script type="text/javascript" nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/Scripts/Trirand/jquery.jqGrid.js"></script>
+
+
+
+        <script nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=SungardCommon" type="text/javascript"></script>
+        <script nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=Combobox" type="text/javascript"></script>
+
+        <script type="text/javascript" nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/Scripts/Common/HAC.js"></script>
+
+        <script nonce="DrfFExR2n1It09Wnb1u6qOht" type="text/javascript">
+            $(function () {
+                    parseForComboBoxes();
+
+                SunGard.Hac.Area('');
+                SunGard.Hac.Controller('Classes');
+                SunGard.Hac.Action('Schedule');
+
+                SunGard.Common.Init('/HomeAccess/');
+                SunGard.Hac.Init('/HomeAccess/');
+            });
+        </script>
+   
+        <!-- Gainsights Logic -->
+            <!-- Gainsight PX Tag-->
+            <script nonce="DrfFExR2n1It09Wnb1u6qOht" type="text/javascript">
+                        (function (n, t, a, e, co) {
+                            var i = "aptrinsic"; n[i] = n[i] || function () {
+                                (n[i].q = n[i].q || []).push(arguments)
+                            }, n[i].p = e; n[i].c = co;
+                            var r = t.createElement("script"); r.async = !0, r.src = a + "?a=" + e;
+                            var c = t.getElementsByTagName("script")[0]; c.parentNode.insertBefore(r, c)
+                        })(window, document, "https://web-sdk-us2.aptrinsic.com/api/aptrinsic.js", "AP-YDUVDTYHCH0C-2" + '');
+            </script>
+            <!-- Gainsight PX Tag-->
+
+        <!-- This should be at the bottom of this section -->
+        
+    <script nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=SungardCommon" type="text/javascript"></script>
+    <script type="text/javascript" nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/Scripts/Frame/Frame?v=1u9U5AXsn-Es4rBPNTMVm2UiMdW1xGOw3HiHDq7e3hk1"></script>
+
+    <script nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=SessionTracking" type="text/javascript"></script>
+
+    <script nonce="DrfFExR2n1It09Wnb1u6qOht">
+        $(function() {
+            var timeout = 1200;
+            var expireAfter = 1197.645876;
+            var showBefore = 120;
+            var redirectUrl = "/HomeAccess/Account/TimedOut";
+            var settingsOverride = {
+                captionText: null,
+                renewText: null,
+                ignoreText: null
+            };
+
+            SunGard.Common.SessionTracking.Init(timeout, expireAfter, showBefore, redirectUrl, settingsOverride);
+        });
+    </script>
+
+    <style >
+        .sg-asp-table th,
+        .sg-asp-table-header-row,
+        .sg-banner-logo-color,
+        .sg-hac-submenu,
+        .ui-jqgrid-view .ui-jqgrid-hdiv,
+        .ui-jqgrid tr.ui-jqgrid-labels th  { /* asp datatables dont produce th elements, only td. Use this class to index the header rows */
+            background-color: white   ;
+            color: #066868  
+        }
+        .sg-asp-table-header-row a,
+        .sg-banner-text-color {
+            color: #066868  
+        }
+    </style>
+
+    <!-- This should be at the bottom of this section -->
+    
+    <script nonce="DrfFExR2n1It09Wnb1u6qOht">
+        $(SunGard.Hac.Frame.Init);
+        $(function() {
+            var helpUrl = '/HomeAccess/HelpTAC/Default.htm';
+            SunGard.Hac.Frame.Banner.Init();
+        });
+    </script>
+
+    <!-- This should be at the bottom of this section -->
+    
+
+
+
+
+    </head>
+    <!-- add webkit-overflow to fix scrolling on IOS Devices-->
+    <body style="-webkit-overflow-scrolling: touch;">
+        <a href="#MainContent" class="sg-skip-link">Skip to main content</a>
+        <main role="main">
+            
+
+
+
+
+
+
+    <header class="sg-main-header" role="banner">
+        
+
+
+
+
+<div class="sg-banner sg-banner-logo-color" data-contact-id="648676" data-student-id="187976">
+
+
+ <img src="https://hac.roundrockisd.org/newRRISD-02.jpg" alt="Round Rock ISD" class="sg-banner-left" tabindex="0" role="img" /> 
+
+    <div class="sg-banner-right">
+        <div class="sg-banner-menu-container">
+            <div class="sg-banner-menu-left"></div>
+            <ul class="sg-banner-menu">
+                <li class="sg-banner-menu-element sg-menu-element-identity">
+                    <span tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">Kiran Kumar Dangeti</span>
+                    <ul class="sg-banner-submenu" role="menu">
+                            <li role="none"><a href="/HomeAccess/Account/Alerts" role="menuitem">My Alerts</a></li>
+                        <li role="none"><a href="/HomeAccess/Account/Details" role="menuitem">My Account</a></li>
+                    </ul>
+                </li>
+
+                <li class="sg-banner-menu-divider"></li>
+                <li class="sg-banner-menu-element sg-menu-element-logoff"><a href="/HomeAccess/Account/Logoff">Logout</a></li>
+            </ul>
+            <div class="sg-banner-menu-right"></div>
+        </div>
+            <div class="sg-banner-chooser">
+                <span class="sg-banner-learning-location"></span>
+                <span class="sg-banner-text sg-banner-text-color sg-add-change-student" title="Change Student" tabindex=&quot;0&quot; role=&quot;button&quot; aria-label=&quot;Change Student&quot;>Dhanya Dangeti</span>
+                        <i class="fa fa-chevron-circle-down sg-add-change-student" title="Change Student" aria-hidden="true"></i>
+
+            </div>
+    </div>
+</div>
+<script nonce="DrfFExR2n1It09Wnb1u6qOht" type="text/javascript">
+    $(function () {
+        SunGard.Common.AddResource('Cancel', 'Cancel');
+        SunGard.Common.AddResource('Submit', 'Submit');
+        SunGard.Common.AddResource('EnrollNewStudent', 'Enroll New Student');
+        SunGard.Common.AddResource('ChangeStudentTitle', 'Choose Your Student');
+
+        var $identity = $('.sg-menu-element-identity');
+        var $identityTrigger = $identity.children('span[tabindex]');
+        $identity.on('focusin', function () {
+            $(this).addClass('sg-submenu-open');
+            $identityTrigger.attr('aria-expanded', 'true');
+        }).on('focusout', function () {
+            var $el = $(this);
+            setTimeout(function () {
+                if (!$.contains($el[0], document.activeElement)) {
+                    $el.removeClass('sg-submenu-open');
+                    $identityTrigger.attr('aria-expanded', 'false');
+                }
+            }, 0);
+        });
+        $identityTrigger.on('keydown', function (e) {
+            if (e.keyCode === 13 || e.keyCode === 32) {
+                e.preventDefault();
+                var $parent = $(this).parent();
+                $parent.toggleClass('sg-submenu-open');
+                var isOpen = $parent.hasClass('sg-submenu-open');
+                $(this).attr('aria-expanded', isOpen ? 'true' : 'false');
+                if (isOpen) {
+                    $parent.find('.sg-banner-submenu a').first().focus();
+                }
+            }
+        });
+    })
+</script>
+        
+
+<script nonce="DrfFExR2n1It09Wnb1u6qOht">
+        $(function() {
+            $('#hac-Home').click(function() { window.location = '/HomeAccess/Home/Home'; });
+            $('#hac-Home').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacMenuKeyboardNav', 'true'); window.location = '/HomeAccess/Home/Home'; } });
+        });
+            $(function () {
+                $('#hac-nav-submenu-Home-WeekView').click(function () { window.location = '/HomeAccess/Home/WeekView'; });
+                $('#hac-nav-submenu-Home-WeekView').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacSubmenuKeyboardNav', 'true'); window.location = '/HomeAccess/Home/WeekView'; } });
+            });
+            $(function () {
+                $('#hac-nav-submenu-Home-Calendar').click(function () { window.location = '/HomeAccess/Home/Calendar'; });
+                $('#hac-nav-submenu-Home-Calendar').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacSubmenuKeyboardNav', 'true'); window.location = '/HomeAccess/Home/Calendar'; } });
+            });
+        $(function() {
+            $('#hac-Attendance').click(function() { window.location = '/HomeAccess/Attendance'; });
+            $('#hac-Attendance').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacMenuKeyboardNav', 'true'); window.location = '/HomeAccess/Attendance'; } });
+        });
+            $(function () {
+                $('#hac-nav-submenu-Attendance-MonthView').click(function () { window.location = '/HomeAccess/Attendance/MonthView'; });
+                $('#hac-nav-submenu-Attendance-MonthView').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacSubmenuKeyboardNav', 'true'); window.location = '/HomeAccess/Attendance/MonthView'; } });
+            });
+        $(function() {
+            $('#hac-Classes').click(function() { window.location = '/HomeAccess/Classes'; });
+            $('#hac-Classes').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacMenuKeyboardNav', 'true'); window.location = '/HomeAccess/Classes'; } });
+        });
+            $(function () {
+                $('#hac-nav-submenu-Classes-Classwork').click(function () { window.location = '/HomeAccess/Classes/Classwork'; });
+                $('#hac-nav-submenu-Classes-Classwork').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacSubmenuKeyboardNav', 'true'); window.location = '/HomeAccess/Classes/Classwork'; } });
+            });
+            $(function () {
+                $('#hac-nav-submenu-Classes-Schedule').click(function () { window.location = '/HomeAccess/Classes/Schedule'; });
+                $('#hac-nav-submenu-Classes-Schedule').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacSubmenuKeyboardNav', 'true'); window.location = '/HomeAccess/Classes/Schedule'; } });
+            });
+        $(function() {
+            $('#hac-Grades').click(function() { window.location = '/HomeAccess/Grades'; });
+            $('#hac-Grades').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacMenuKeyboardNav', 'true'); window.location = '/HomeAccess/Grades'; } });
+        });
+            $(function () {
+                $('#hac-nav-submenu-Grades-IPR').click(function () { window.location = '/HomeAccess/Grades/IPR'; });
+                $('#hac-nav-submenu-Grades-IPR').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacSubmenuKeyboardNav', 'true'); window.location = '/HomeAccess/Grades/IPR'; } });
+            });
+            $(function () {
+                $('#hac-nav-submenu-Grades-ReportCard').click(function () { window.location = '/HomeAccess/Grades/ReportCard'; });
+                $('#hac-nav-submenu-Grades-ReportCard').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacSubmenuKeyboardNav', 'true'); window.location = '/HomeAccess/Grades/ReportCard'; } });
+            });
+            $(function () {
+                $('#hac-nav-submenu-Grades-TestScores').click(function () { window.location = '/HomeAccess/Grades/TestScores'; });
+                $('#hac-nav-submenu-Grades-TestScores').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacSubmenuKeyboardNav', 'true'); window.location = '/HomeAccess/Grades/TestScores'; } });
+            });
+            $(function () {
+                $('#hac-nav-submenu-Grades-TXTestScores').click(function () { window.location = '/HomeAccess/Grades/TXTestScores'; });
+                $('#hac-nav-submenu-Grades-TXTestScores').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacSubmenuKeyboardNav', 'true'); window.location = '/HomeAccess/Grades/TXTestScores'; } });
+            });
+        $(function() {
+            $('#hac-Registration').click(function() { window.location = '/HomeAccess/Registration'; });
+            $('#hac-Registration').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacMenuKeyboardNav', 'true'); window.location = '/HomeAccess/Registration'; } });
+        });
+            $(function () {
+                $('#hac-nav-submenu-Registration-Demographic').click(function () { window.location = '/HomeAccess/Registration/Demographic'; });
+                $('#hac-nav-submenu-Registration-Demographic').on('keypress', function(e) { if (e.which == 13) { sessionStorage.setItem('hacSubmenuKeyboardNav', 'true'); window.location = '/HomeAccess/Registration/Demographic'; } });
+            });
+    // Focus management: On page load, focus the currently selected submenu item for keyboard users
+    $(function() {
+        // Only set focus if user navigated via keyboard (check for hash or sessionStorage flag)
+        if (sessionStorage.getItem('hacMenuKeyboardNav') === 'true') {
+            var $selectedSubmenu = $('.sg-hac-submenu-option-selected');
+            if ($selectedSubmenu.length > 0) {
+                $selectedSubmenu.first().focus();
+            }
+            sessionStorage.removeItem('hacMenuKeyboardNav');
+        }
+        // After submenu keyboard navigation, focus main content area
+        if (sessionStorage.getItem('hacSubmenuKeyboardNav') === 'true') {
+            var mainContent = document.getElementById('MainContent');
+            if (mainContent) {
+                mainContent.focus();
+            }
+            sessionStorage.removeItem('hacSubmenuKeyboardNav');
+        }
+    });
+</script>
+
+<nav id="hac-nav-menu" class="sg-hac-menu" role="navigation" aria-label="Main menu">
+    <div class="sg-hac-menu-options" role="menubar">
+            <div id="hac-Home" class="sg-hac-menu-option" tabindex="0" role="menuitem" aria-label="Home"  subDiv="#hac-nav-submenu-Home-options">
+                <img alt="" aria-hidden="true" src="/HomeAccess/Media/images/Menu/hac-Home.png" />
+                <span>Home</span> 
+            </div>
+            <div id="hac-Attendance" class="sg-hac-menu-option" tabindex="0" role="menuitem" aria-label="Attendance"  subDiv="#hac-nav-submenu-Attendance-options">
+                <img alt="" aria-hidden="true" src="/HomeAccess/Media/images/Menu/hac-Attendance.png" />
+                <span>Attendance</span> 
+            </div>
+            <div id="hac-Classes" class="sg-hac-menu-option sg-hac-menu-option-selected" tabindex="0" role="menuitem" aria-label="Classes" aria-current="page" subDiv="#hac-nav-submenu-Classes-options">
+                <img alt="" aria-hidden="true" src="/HomeAccess/Media/images/Menu/hac-Classes.png" />
+                <span>Classes</span> 
+            </div>
+            <div id="hac-Grades" class="sg-hac-menu-option" tabindex="0" role="menuitem" aria-label="Grades"  subDiv="#hac-nav-submenu-Grades-options">
+                <img alt="" aria-hidden="true" src="/HomeAccess/Media/images/Menu/hac-Grades.png" />
+                <span>Grades</span> 
+            </div>
+            <div id="hac-Registration" class="sg-hac-menu-option" tabindex="0" role="menuitem" aria-label="Registration"  subDiv="#hac-nav-submenu-Registration-options">
+                <img alt="" aria-hidden="true" src="/HomeAccess/Media/images/Menu/hac-Registration.png" />
+                <span>Registration</span> 
+            </div>
+    </div>
+</nav>
+<div id="hac-nav-submenu" class="sg-hac-submenu" role="navigation" aria-label="Sub menu">
+    <div id="hac-nav-submenu-Home-options" class="sg-hac-submenu-options" role="tablist" aria-label="Home" style="display:none;">
+            <div id="hac-nav-submenu-Home-WeekView" class="sg-hac-submenu-option" role="tab" tabindex="0" aria-label="Week View" aria-selected="false" >
+                <span>Week View</span>
+            </div>
+            <div id="hac-nav-submenu-Home-Calendar" class="sg-hac-submenu-option" role="tab" tabindex="0" aria-label="Calendar" aria-selected="false" >
+                <span>Calendar</span>
+            </div>
+    </div>
+    <div id="hac-nav-submenu-Attendance-options" class="sg-hac-submenu-options" role="tablist" aria-label="Attendance" style="display:none;">
+            <div id="hac-nav-submenu-Attendance-MonthView" class="sg-hac-submenu-option" role="tab" tabindex="0" aria-label="Month View" aria-selected="false" >
+                <span>Month View</span>
+            </div>
+    </div>
+    <div id="hac-nav-submenu-Classes-options" class="sg-hac-submenu-options" role="tablist" aria-label="Classes" style="">
+            <div id="hac-nav-submenu-Classes-Classwork" class="sg-hac-submenu-option" role="tab" tabindex="0" aria-label="Classwork" aria-selected="false" >
+                <span>Classwork</span>
+            </div>
+            <div id="hac-nav-submenu-Classes-Schedule" class="sg-hac-submenu-option sg-hac-submenu-option-selected" role="tab" tabindex="0" aria-label="Schedule" aria-selected="true" aria-current="page">
+                <span>Schedule</span>
+            </div>
+    </div>
+    <div id="hac-nav-submenu-Grades-options" class="sg-hac-submenu-options" role="tablist" aria-label="Grades" style="display:none;">
+            <div id="hac-nav-submenu-Grades-IPR" class="sg-hac-submenu-option" role="tab" tabindex="0" aria-label="IPR" aria-selected="false" >
+                <span>IPR</span>
+            </div>
+            <div id="hac-nav-submenu-Grades-ReportCard" class="sg-hac-submenu-option" role="tab" tabindex="0" aria-label="Report Card" aria-selected="false" >
+                <span>Report Card</span>
+            </div>
+            <div id="hac-nav-submenu-Grades-TestScores" class="sg-hac-submenu-option" role="tab" tabindex="0" aria-label="Test Scores" aria-selected="false" >
+                <span>Test Scores</span>
+            </div>
+            <div id="hac-nav-submenu-Grades-TXTestScores" class="sg-hac-submenu-option" role="tab" tabindex="0" aria-label="Texas Test Scores" aria-selected="false" >
+                <span>Texas Test Scores</span>
+            </div>
+    </div>
+    <div id="hac-nav-submenu-Registration-options" class="sg-hac-submenu-options" role="tablist" aria-label="Registration" style="display:none;">
+            <div id="hac-nav-submenu-Registration-Demographic" class="sg-hac-submenu-option" role="tab" tabindex="0" aria-label="Demographic" aria-selected="false" >
+                <span>Demographic</span>
+            </div>
+    </div>
+</div>
+    </header>
+
+    
+
+
+<div id="MainContent" class="sg-main-content" tabindex="0">
+    
+
+    <div style="display: none;" id="session-block" aria-hidden="true">
+    </div>
+    <div id="session-container" style="display: none;" class="sg-container" role="alertdialog" aria-modal="true" aria-labelledby="session-warning-heading" aria-describedby="session-warning-text">
+        <div class="sg-header">
+		    <img class="sg-header-image" src="/HomeAccess/Media/Themes/Base/Headers/header-session-expire.png" alt="" aria-hidden="true" />
+		    <span class="sg-header-heading" id="session-warning-heading">Session Warning</span>
+        </div>
+        <div class="sg-container-content" id="session-background">
+            <p id="session-warning-text">Your session is about to expire.  Unsaved changes will be lost.</p>
+            <div id="session-buttons" class="sg-container-button">
+                <button Name="session-renew" Value="" aria_label="Keep session open" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="session-renew"><span class="ui-button-text">Keep session open</span></button>
+                <button Name="session-ignore" Value="" aria_label="Ignore" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="session-ignore"><span class="ui-button-text">Ignore</span></button>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<iframe src="/HomeAccess/Content/Student/Classes.aspx" id="sg-legacy-iframe" class="sg-legacy-iframe" title="Schedule" allowtransparency=true frameborder=0 scrolling="auto" seamless="seamless"></iframe>
+<div id="saveNotification" role="alert" aria-live="assertive" aria-atomic="true" class="sr-only"></div>
+<script type="text/javascript" nonce="DrfFExR2n1It09Wnb1u6qOht" src="/HomeAccess/Scripts/Legacy/Index.js"></script>
+
+
+
+
+
+<input name="__RequestVerificationToken" type="hidden" value="tHoah87w9Ki1uW761difxcdA4BqFhdJ2h7uakiJt8fbxAz11Ahe0W_h9mcMZNHjPwWGEIyeisg823U7GOGWlXPZ_YSHL6-_s7H8etFX43Zk1" />
+</div>
+
+
+    <footer class="sg-main-footer" role="contentinfo">
+        <span class="sg-hac-footer-logo" aria-hidden="true"></span>
+<span class="sg-hac-copyright">&copy; 2003 - 2026 PowerSchool.  All Rights Reserved.</span>
+<nav class="sg-hac-footer-links" aria-label="Footer links">
+        <a href="/HomeAccess/Frame/PrivacyPolicy" onclick="SunGard.Hac.Frame.Footer.DisplayFooterPopup('/HomeAccess/Frame/PrivacyPolicy', 'Privacy Policy'); return false;" role="button">
+            Privacy Policy
+        </a>
+
+        <a href="/HomeAccess/Frame/TermsOfUse" onclick="SunGard.Hac.Frame.Footer.DisplayFooterPopup('/HomeAccess/Frame/TermsOfUse', 'Terms of Use'); return false;" role="button">
+            Terms of Use
+        </a>
+</nav>
+
+    </footer>
+
+    
+
+
+
+        </main>
+        
+        <script nonce="DrfFExR2n1It09Wnb1u6qOht">
+            $(function() {
+                // Build the jQuery UI buttons
+                $('.sg-buttonset').controlgroup();
+                $('.sg-button').button();
+
+                // Move focus to main content when skip link is activated
+                $('.sg-skip-link').on('click', function (e) {
+                    var target = document.getElementById('MainContent');
+                    if (target) {
+                        e.preventDefault();
+                        target.focus();
+                    }
+                });
+            })
+        </script>
+    </body>
+    
+    
+    
+
+
+</html>

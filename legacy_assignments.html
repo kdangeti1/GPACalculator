@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<html>
+<head><title>
+	HomeAccess
+</title>
+    
+    <link href="/HomeAccess/Stylesheets/Themes/Base/css?v=tw0njYZqSOVYHn_D3DhCDTytd6fBWpHQgVTAo5eiREQ1" rel="Stylesheet" type="text/css" /> 
+
+    
+    <link rel="Stylesheet" href="/HomeAccess/eSchoolPLUSResource/GetEmbeddedStyle?file=CrossSite" />
+    <link rel="Stylesheet" href="/HomeAccess/eSchoolPLUSResource/GetEmbeddedStyle?file=ComboBox" />
+    <link rel="Stylesheet" href="/HomeAccess/Stylesheets/Common/font-awesome.css" />
+    
+    
+    <link rel="Stylesheet" href="/HomeAccess/Stylesheets/Site.css" />
+    <link rel="stylesheet" href="/HomeAccess/Stylesheets/Frame/Frame.css" /> 
+    <link rel="SHORTCUT ICON" href="/HomeAccess/Media/Themes/Base/Common/favicon.ico"/>
+    <style>
+        .sg-asp-table-header-row,
+        .ui-jqgrid-view .ui-jqgrid-hdiv, 
+        .ui-jqgrid tr.ui-jqgrid-labels th  {
+	        background-color: white   ;
+            color: #066868  ;
+        }
+    </style>
+
+    <script src="/HomeAccess/Scripts/libs/jquery?v=qIcuP3UP_aRnf7YSojJ0X96urcPMuU40OLTAhIFZUhU1" type="text/javascript"></script>   
+    <script src="/HomeAccess/Scripts/libs/modernizr-2.8.3.js" type="text/javascript"></script>   
+    <script src="/HomeAccess/Scripts/Trirand/ui.multiselect.js" type="text/javascript" ></script>
+    <script src="/HomeAccess/Scripts/Trirand/i18n/grid.locale-en.js" type="text/javascript"></script>
+    <script src="/HomeAccess/Scripts/Trirand/jquery.jqGrid.js" type="text/javascript"></script>
+    <script src="/HomeAccess/Scripts/libs/json2.js" type="text/javascript"></script>
+    <script src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=SungardCommon" type="text/javascript"></script>    
+    <script src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=Combobox" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            parseForComboBoxes();
+        });
+    </script>    
+    
+
+    <script type="text/javascript">
+        $(SunGard.Common.Init('/HomeAccess/'));
+    </script>
+    
+    
+    
+    <link href="/HomeAccess/StyleSheets/Assignments/AssignmentsStyle.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="Assignments.js"></script>
+    <script type="text/javascript" src="OpenClassPopUp.js"></script>
+    <script type="text/javascript" src="/HomeAccess/Content/Common/functional.js"></script>
+    <script type="text/javascript" src="/HomeAccess/Content/Common/Validation.js"></script>
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/javascript">
+        $(".comment-tooltip").tooltip({
+            classes: {
+                "ui-tooltip": "comment-tooltip-hover"
+            }
+        });
+    </script>
+
+</head>
+<body>
+    
+    <div id='MainContent' class='sg-main-content'>
+        <div class='sg-hac-content'>
+            <form method="post" action="./Assignments.aspx" id="fmMain">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="B0093F3C" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="mqO64VSQs4Ti5Eb4yR5i5zi8/eazYpKLJlAiJPdPUXPc2jdGcBfZsYw2CgZD+Q7NYsTxs4x13wD3XBgQQnYy8U9K2qqd02jRC9Be8zDxJsECMDYsch2xsU7qIbcx0nIwQvz4AJ2dOpOUfJdJTjf4uUIpekWDLd9w96CI94qr+tbAeCW133PfGL16w4OonbtOgPNEHKLtsbANCwred+X2xLs1LCy6OPxbmhryT4Xfby7g97ht4+I9BQzlFNyGO9zvzp58oBCcG842CcEWNeIfVtvWyqOEdBJlPWCQPDEQ9b3LLXOdlMOVyPiWUrioXP7zmHMZkpd+d04OhXseAen6vbrZ/fTroT+OzmYCd9ZsENBsSL9Z9cAo7RTBew7aysM/zEd1pwbvPsP+jvR8uqbGnNAZ6wKaxCvDM1Xor9fl2xBw4dR7ZQchLS3OZ6IvYYBx6PoGgYWDDr0z3mj9KPpxuBiOK9soIrBSFZ1sVqaXTsIozl83qbzVO1i49TX2vBhQEhpsgS3Q/nvh12njKUN67v0u/ALblfYRb3aHpJ9aY4ISXdd3KgCEBZN1zpX+LyyDO2Ql8UbgEUtP6umEljozm6CjNlDNuoxbrjYuiu9p5mzpX2926sxyAA+Sb09wgsvcYGdXGIaA3pv+VVGJVAZPAi1igRfKV31acYRsPxJBNsSyfeBy8RTmNtqgvI8xSYPjx5p6vOYuyLB9Z+PnPeBiEJORfLaOy57FKhNXbwcAv2dlaEYaYZoxsH7+ntBHvSgs+RlKqaWpiGFDV8Rk+BcxyRN78SL48wvTpk8K+8GsCZoUbW+wC3YP0nmNSBRQzSC6/DZV9uMWJu73lnuC51Nqv+fgJDNHBbKiopq8Vk7+PBZwgOm15/zfdguzukR5bmgluuPNJ2dRCGkWLoYf0exJf0RyVPCNN3JMHVzc7KWt2DMe4tm7Y1uv1C9yCqSIIW6ZP8fbvXXHj2QXc8JgVvP42QNb0f+JDg+7a7wmoOk/LJ4X2bCvcH8giS1GvTKe6mO4UGKOYi3W/TfuRQb4wCrv5nVH7jfKJaDAaiYtg8v9u6QFyBjYxS0z7VURWy/f0WGLdlPMdkIj87JTd8en1dNydkBDNSUNXZnTHPI+laiXh8n3vbDu5T4FAl27J9ObvbSbCmlD5hF26oyRo+2Wa3b+sG7j4SegVBko8Rd8Sh+nr0JSy3NrK2FWFZpzdtLPxp6kCcJQo3H5oMsEVGYxiSwuojJliVLCB+8vmV3YWmmSWbF2z2mlQbXWQqy2rW00xFKo2gepDMSwgRijHSc6EFwGpjjUttHUEXu+ZrhyuLgXin9vLm0RSiKb5MM0jL1o8f4vsw7Cg3HgLPwDA3G3KcEG3Nn8L92h+cLXBIjZon833eVS9Bj/I7+FoywB1fqk5Dn4GuoD75kgCoTMDn2LPC8uvJ4X0Qm9xqpD9INvtk+H7sftNCsBHM727RuWk3ACRk92CLzJONKISlvMtTotpZqWo5ieVBwNZpUUr1qJWZncwZmmD1+dwm6OMveyO4Ju81X3nTeiOF+U9YKZUqgw6QJQgV0trCRwwlX3hIkk11619nPa7v9c0Yz6cH7dYQUWbKbDanXLroq/BIFsp3NC57jQCi7r7JoozIuU7Dogz/xSxuhSAqR4sb46RdlE5Xy7yTijGxNd5IXTQCc5N+wXSvrYlQ==" />
+                
+<div class="sg-header">
+		<input name="ctl00$plnMain$hdnValidMHACLicense" type="hidden" id="plnMain_hdnValidMHACLicense" value="Y" />
+        <input name="ctl00$plnMain$hdnIsVisibleClsWrk" type="hidden" id="plnMain_hdnIsVisibleClsWrk" value="Y" />
+        <input name="ctl00$plnMain$hdnIsVisibleCrsAvg" type="hidden" id="plnMain_hdnIsVisibleCrsAvg" value="Y" />
+        <input name="ctl00$plnMain$hdnIsVisibleOverdue" type="hidden" id="plnMain_hdnIsVisibleOverdue" value="N" />
+        <input name="ctl00$plnMain$hdnIsVisibleUpcoming" type="hidden" id="plnMain_hdnIsVisibleUpcoming" value="N" />
+        <input name="ctl00$plnMain$hdnJsAlert" type="hidden" id="plnMain_hdnJsAlert" value="Averages cannot be displayed when  Report Card Run is set to (All Runs)." />
+        <input name="ctl00$plnMain$hdnTitle" type="hidden" id="plnMain_hdnTitle" value="Classwork" />
+        <input name="ctl00$plnMain$hdnLastUpdated" type="hidden" id="plnMain_hdnLastUpdated" value="Last Updated" />
+        <input name="ctl00$plnMain$hdnDroppedCourse" type="hidden" id="plnMain_hdnDroppedCourse" value="This course was dropped as of" />
+        <input name="ctl00$plnMain$hdnddlClasses" type="hidden" id="plnMain_hdnddlClasses" value="(All Classes)" /> 
+        <input name="ctl00$plnMain$hdnddlCompetencies" type="hidden" id="plnMain_hdnddlCompetencies" value="(All Competency Groups)" /> 
+        <input name="ctl00$plnMain$hdnCompDateDue" type="hidden" id="plnMain_hdnCompDateDue" value="Date Due" /> 
+        <input name="ctl00$plnMain$hdnCompDateAssigned" type="hidden" id="plnMain_hdnCompDateAssigned" value="Date Assigned" /> 
+        <input name="ctl00$plnMain$hdnCompCourse" type="hidden" id="plnMain_hdnCompCourse" value="Course" /> 
+        <input name="ctl00$plnMain$hdnCompAssignment" type="hidden" id="plnMain_hdnCompAssignment" value="Assignment" /> 
+        <input name="ctl00$plnMain$hdnCompAssignmentLabel" type="hidden" id="plnMain_hdnCompAssignmentLabel" value="Assignments Not Related to Any Competency" /> 
+        <input name="ctl00$plnMain$hdnCompNoAssignments" type="hidden" id="plnMain_hdnCompNoAssignments" value="No assignments found" /> 
+        <input name="ctl00$plnMain$hdnCompNoClasswork" type="hidden" id="plnMain_hdnCompNoClasswork" value="Classwork could not be found for this competency for the selected report card run." /> 
+        <input name="ctl00$plnMain$hdnCompScore" type="hidden" id="plnMain_hdnCompScore" value="Score" /> 
+        <input name="ctl00$plnMain$hdnCompPoints" type="hidden" id="plnMain_hdnCompPoints" value="Points" /> 
+        <input name="ctl00$plnMain$hdnddlReportCardRuns1" type="hidden" id="plnMain_hdnddlReportCardRuns1" value="(All Runs)" /> 
+        <input name="ctl00$plnMain$hdnddlReportCardRuns2" type="hidden" id="plnMain_hdnddlReportCardRuns2" value="(All Terms)" /> 
+        <input name="ctl00$plnMain$hdnbtnShowAverage" type="hidden" id="plnMain_hdnbtnShowAverage" value="Show All Averages" />
+        <input name="ctl00$plnMain$hdnShowAveragesToolTip" type="hidden" id="plnMain_hdnShowAveragesToolTip" value="Show all student&#39;s averages" />
+        <input name="ctl00$plnMain$hdnPrintClassworkToolTip" type="hidden" id="plnMain_hdnPrintClassworkToolTip" value="Print all classwork" />
+        <input name="ctl00$plnMain$hdnPrintClasswork" type="hidden" id="plnMain_hdnPrintClasswork" value="Print Classwork" />
+        <input name="ctl00$plnMain$hdnCollapseToolTip" type="hidden" id="plnMain_hdnCollapseToolTip" value="Collapse all courses" />
+        <input name="ctl00$plnMain$hdnCollapse" type="hidden" id="plnMain_hdnCollapse" value="Collapse All" />
+        <input name="ctl00$plnMain$hdnFullToolTip" type="hidden" id="plnMain_hdnFullToolTip" value="Switch courses to Full View" />
+        <input name="ctl00$plnMain$hdnViewFull" type="hidden" id="plnMain_hdnViewFull" value="Full View" />
+        <input name="ctl00$plnMain$hdnQuickToolTip" type="hidden" id="plnMain_hdnQuickToolTip" value="Switch courses to Quick View" />
+        <input name="ctl00$plnMain$hdnViewQuick" type="hidden" id="plnMain_hdnViewQuick" value="Quick View" />
+        <input name="ctl00$plnMain$hdnExpand" type="hidden" id="plnMain_hdnExpand" value="Expand All" />
+        <input name="ctl00$plnMain$hdnExpandToolTip" type="hidden" id="plnMain_hdnExpandToolTip" value="Expand all courses" />
+        <input name="ctl00$plnMain$hdnChildCompetencyMessage" type="hidden" id="plnMain_hdnChildCompetencyMessage" value="This competency is calculated as an average of the following competencie" />
+        <input name="ctl00$plnMain$hdnCompetencyScoreLabel" type="hidden" id="plnMain_hdnCompetencyScoreLabel" value="Grade" />
+        <input name="ctl00$plnMain$hdnAverageDetailsDialogTitle" type="hidden" id="plnMain_hdnAverageDetailsDialogTitle" value="Average Details" />
+        <input name="ctl00$plnMain$hdnAssignmentCompetency" type="hidden" id="plnMain_hdnAssignmentCompetency" value="Assignment Competency" />
+        <input name="ctl00$plnMain$hdnAssignmentCourse" type="hidden" id="plnMain_hdnAssignmentCourse" value="Assignment Course" />
+        <input name="ctl00$plnMain$hdnTooltipTitle" type="hidden" id="plnMain_hdnTooltipTitle" value="Title" />
+        <input name="ctl00$plnMain$hdnCategory" type="hidden" id="plnMain_hdnCategory" value="Category" />
+        <input name="ctl00$plnMain$hdnDueDate" type="hidden" id="plnMain_hdnDueDate" value="Due Date" />
+        <input name="ctl00$plnMain$hdnMaxPoints" type="hidden" id="plnMain_hdnMaxPoints" value="Max Points" />
+        <input name="ctl00$plnMain$hdnCanBeDropped" type="hidden" id="plnMain_hdnCanBeDropped" value="Can Be Dropped" />
+        <input name="ctl00$plnMain$hdnHasAttachments" type="hidden" id="plnMain_hdnHasAttachments" value="Has Attachments" />
+        <input name="ctl00$plnMain$hdnExtraCredit" type="hidden" id="plnMain_hdnExtraCredit" value="Extra Credit" />
+        <input name="ctl00$plnMain$hdnType" type="hidden" id="plnMain_hdnType" value="Type" />
+        <input name="ctl00$plnMain$hdnAssignmentDataInfo" type="hidden" id="plnMain_hdnAssignmentDataInfo" value="Information could not be found for the assignment" />
+
+        <span id="plnMain_spnView"><button id="btnView" onclick="btnView_onclick(); return false;" class="sg-button sg-right sg-5px-margin btnView" title="Switch courses to Full View">Full View</button></span>        
+        <button id="plnMain_btnCollapseExpand" type="button" class="sg-button sg-right sg-5px-margin btnCollapseExpand" title="Collapse all courses" onClick="javascript:return btnCollapseExpand_onclick(event);">Collapse All</button>
+        <button id="plnMain_btnPrintClasswork" onclick="btnPrintClasswork_onclick()" type="button" class="sg-button sg-right sg-5px-margin btnPrintClassworkAction">Print Classwork</button>
+    </div>
+    <div id="plnMain_pnlFullPage" class="sg-content-grid">
+	
+        <div class="sg-content-grid-container sg-container-content">
+            <div>
+                <span id="plnMain_lblViewClassworkfor"><b>View Classwork for</b></span>
+                
+                
+            <span id="plnMain_lblForRCardRun"><b>Report Card Run</b></span>
+            
+                <select name="ctl00$plnMain$ddlReportCardRuns" id="plnMain_ddlReportCardRuns" class="sg-combobox">
+		<option selected="selected" value="ALL">(All Runs)</option>
+		<option value="1-2026">1</option>
+		<option value="2-2026">2</option>
+		<option value="3-2026">3</option>
+		<option value="4-2026">4</option>
+
+	</select>
+             
+                <button onclick="__doPostBack('ctl00$plnMain$btnRefreshView','')" id="plnMain_btnRefreshView" type="button" class="sg-button sg-right">Refresh View</button>
+            </div>
+            <div>
+                <label id="plnMain_lblShow">Show</label>
+                <span id="plnMain_spnCourse" class="asmt-course" style="display:;"><select name="ctl00$plnMain$ddlClasses" id="plnMain_ddlClasses" class="sg-combobox">
+		<option selected="selected" value="ALL">(All Classes)</option>
+		<option value="2897438|1">0210 - 1    English Lang Arts and Reading</option>
+		<option value="2897505|1">0240 - 1    Social Studies</option>
+		<option value="2897439|1">0250 - 1    Math</option>
+		<option value="2897506|1">0260 - 1    Science</option>
+		<option value="2897440|1">0280 - 1    Art/Kruger</option>
+		<option value="2897441|1">0281 - 1    Music/Kruger</option>
+		<option value="2897442|1">0282 - 1    PE/Kruger</option>
+		<option value="2897629|1">0286 - 1    Spanish/Kruger</option>
+		<option value="2897542|1">0287 - 1    Technology</option>
+		<option value="2897543|1">0290 - 1    Student Respons</option>
+
+	</select></span>
+                <span id="plnMain_spnCompetency" class="asmt-competency" style="display:none;"><select name="ctl00$plnMain$ddlCompetencies" id="plnMain_ddlCompetencies" class="sg-combobox">
+		<option selected="selected" value="ALL">(All Competency Groups)</option>
+
+	</select></span>
+                <label id="plnMain_lblOrderBy">Order By</label>
+                <span class="asmt-order"><select name="ctl00$plnMain$ddlOrderBy" id="plnMain_ddlOrderBy" class="sg-combobox">
+		<option selected="selected" value="Class">Class</option>
+		<option value="Date">Date Due</option>
+
+	</select></span>
+                   
+            </div>
+                         
+        </div>
+        <div id="dvAlerts" class="sg-content-alert-container sg-container-content">
+            <div id="plnMain_pCrsAverageAlert">
+                <input id="plnMain_chkCrsAvgAlert" type="checkbox" name="ctl00$plnMain$chkCrsAvgAlert" />
+                <span id="plnMain_lblCrsAvgEmail">Email</span>
+				<input id="plnMain_chkCrsAvgPushMobile" type="checkbox" name="ctl00$plnMain$chkCrsAvgPushMobile" />
+				<span id="plnMain_lblCrsAvgPushMobile">Push Mobile - </span>
+                
+                <!-- Span for SCRRK00707463 -->
+                <span id="plnMain_lblCrsAverageUnsubscribeRRK">Stop receiving course average alerts</span>
+                 
+                
+                
+                                                          
+
+                 
+                                            
+                 
+
+                
+            </div>
+            <div id="plnMain_pClassworkAlert">
+                <input id="plnMain_chkClsWrkAlert" type="checkbox" name="ctl00$plnMain$chkClsWrkAlert" />
+				<span id="plnMain_lblClsWrkEmail">Email</span>
+				<input id="plnMain_chkClsWrkPushMobile" type="checkbox" name="ctl00$plnMain$chkClsWrkPushMobile" />
+				<span id="plnMain_lblClsWrkPushMobile">Push Mobile - </span>
+                <span id="plnMain_lblAverageStart">Alert me if my student receives an assignment average below</span>
+                <input name="ctl00$plnMain$txtMinAvgValue" type="text" id="plnMain_txtMinAvgValue" disabled="disabled" class="aspNetDisabled disabled" /> 
+                <span id="plnMain_lblAverageMid">% or above </span>
+                <input name="ctl00$plnMain$txtMaxAvgValue" type="text" id="plnMain_txtMaxAvgValue" disabled="disabled" class="aspNetDisabled disabled" />
+                <span id="plnMain_lblAverageEnd">%.</span>
+        
+                                                          
+                                            
+                 
+
+                
+
+            </div>
+            
+            
+        </div>
+    
+    
+    
+    
+        <div class="AssignmentClass">
+            <div class="sg-header sg-header-square">
+                 
+                  
+                    <a class="sg-header-heading" href="#" onclick="OpenClassPopUp('2897438'); return false;">
+                        0210 - 1    English Lang Arts and Reading
+                    </a>
+                <span id="plnMain_rptAssigmnetsByCourse_lblLastUpdDate_0" class="sg-header-sub-heading"></span>
+                
+                <span id="plnMain_rptAssigmnetsByCourse_lblHdrAverage_0" class="sg-header-heading sg-right" title="AVG"></span>    
+            </div>
+            <div class="sg-content-grid">
+                
+                <div class="sg-asp-table-group">
+                    
+                </div>
+            </div>
+        </div>           
+        
+        <div class="AssignmentClass">
+            <div class="sg-header sg-header-square">
+                 
+                  
+                    <a class="sg-header-heading" href="#" onclick="OpenClassPopUp('2897505'); return false;">
+                        0240 - 1    Social Studies
+                    </a>
+                <span id="plnMain_rptAssigmnetsByCourse_lblLastUpdDate_1" class="sg-header-sub-heading"></span>
+                
+                <span id="plnMain_rptAssigmnetsByCourse_lblHdrAverage_1" class="sg-header-heading sg-right" title="AVG"></span>    
+            </div>
+            <div class="sg-content-grid">
+                
+                <div class="sg-asp-table-group">
+                    
+                </div>
+            </div>
+        </div>           
+        
+        <div class="AssignmentClass">
+            <div class="sg-header sg-header-square">
+                 
+                  
+                    <a class="sg-header-heading" href="#" onclick="OpenClassPopUp('2897439'); return false;">
+                        0250 - 1    Math
+                    </a>
+                <span id="plnMain_rptAssigmnetsByCourse_lblLastUpdDate_2" class="sg-header-sub-heading"></span>
+                
+                <span id="plnMain_rptAssigmnetsByCourse_lblHdrAverage_2" class="sg-header-heading sg-right" title="AVG"></span>    
+            </div>
+            <div class="sg-content-grid">
+                
+                <div class="sg-asp-table-group">
+                    
+                </div>
+            </div>
+        </div>           
+        
+        <div class="AssignmentClass">
+            <div class="sg-header sg-header-square">
+                 
+                  
+                    <a class="sg-header-heading" href="#" onclick="OpenClassPopUp('2897506'); return false;">
+                        0260 - 1    Science
+                    </a>
+                <span id="plnMain_rptAssigmnetsByCourse_lblLastUpdDate_3" class="sg-header-sub-heading"></span>
+                
+                <span id="plnMain_rptAssigmnetsByCourse_lblHdrAverage_3" class="sg-header-heading sg-right" title="AVG"></span>    
+            </div>
+            <div class="sg-content-grid">
+                
+                <div class="sg-asp-table-group">
+                    
+                </div>
+            </div>
+        </div>           
+        
+        <div class="AssignmentClass">
+            <div class="sg-header sg-header-square">
+                 
+                  
+                    <a class="sg-header-heading" href="#" onclick="OpenClassPopUp('2897440'); return false;">
+                        0280 - 1    Art/Kruger
+                    </a>
+                <span id="plnMain_rptAssigmnetsByCourse_lblLastUpdDate_4" class="sg-header-sub-heading"></span>
+                
+                <span id="plnMain_rptAssigmnetsByCourse_lblHdrAverage_4" class="sg-header-heading sg-right" title="AVG"></span>    
+            </div>
+            <div class="sg-content-grid">
+                
+                <div class="sg-asp-table-group">
+                    
+                </div>
+            </div>
+        </div>           
+        
+        <div class="AssignmentClass">
+            <div class="sg-header sg-header-square">
+                 
+                  
+                    <a class="sg-header-heading" href="#" onclick="OpenClassPopUp('2897441'); return false;">
+                        0281 - 1    Music/Kruger
+                    </a>
+                <span id="plnMain_rptAssigmnetsByCourse_lblLastUpdDate_5" class="sg-header-sub-heading"></span>
+                
+                <span id="plnMain_rptAssigmnetsByCourse_lblHdrAverage_5" class="sg-header-heading sg-right" title="AVG"></span>    
+            </div>
+            <div class="sg-content-grid">
+                
+                <div class="sg-asp-table-group">
+                    
+                </div>
+            </div>
+        </div>           
+        
+        <div class="AssignmentClass">
+            <div class="sg-header sg-header-square">
+                 
+                  
+                    <a class="sg-header-heading" href="#" onclick="OpenClassPopUp('2897442'); return false;">
+                        0282 - 1    PE/Kruger
+                    </a>
+                <span id="plnMain_rptAssigmnetsByCourse_lblLastUpdDate_6" class="sg-header-sub-heading"></span>
+                
+                <span id="plnMain_rptAssigmnetsByCourse_lblHdrAverage_6" class="sg-header-heading sg-right" title="AVG"></span>    
+            </div>
+            <div class="sg-content-grid">
+                
+                <div class="sg-asp-table-group">
+                    
+                </div>
+            </div>
+        </div>           
+        
+        <div class="AssignmentClass">
+            <div class="sg-header sg-header-square">
+                 
+                  
+                    <a class="sg-header-heading" href="#" onclick="OpenClassPopUp('2897629'); return false;">
+                        0286 - 1    Spanish/Kruger
+                    </a>
+                <span id="plnMain_rptAssigmnetsByCourse_lblLastUpdDate_7" class="sg-header-sub-heading"></span>
+                
+                <span id="plnMain_rptAssigmnetsByCourse_lblHdrAverage_7" class="sg-header-heading sg-right" title="AVG"></span>    
+            </div>
+            <div class="sg-content-grid">
+                
+                <div class="sg-asp-table-group">
+                    
+                </div>
+            </div>
+        </div>           
+        
+        <div class="AssignmentClass">
+            <div class="sg-header sg-header-square">
+                 
+                  
+                    <a class="sg-header-heading" href="#" onclick="OpenClassPopUp('2897542'); return false;">
+                        0287 - 1    Technology
+                    </a>
+                <span id="plnMain_rptAssigmnetsByCourse_lblLastUpdDate_8" class="sg-header-sub-heading"></span>
+                
+                <span id="plnMain_rptAssigmnetsByCourse_lblHdrAverage_8" class="sg-header-heading sg-right" title="AVG"></span>    
+            </div>
+            <div class="sg-content-grid">
+                
+                <div class="sg-asp-table-group">
+                    
+                </div>
+            </div>
+        </div>           
+        
+        <div class="AssignmentClass">
+            <div class="sg-header sg-header-square">
+                 
+                  
+                    <a class="sg-header-heading" href="#" onclick="OpenClassPopUp('2897543'); return false;">
+                        0290 - 1    Student Respons
+                    </a>
+                <span id="plnMain_rptAssigmnetsByCourse_lblLastUpdDate_9" class="sg-header-sub-heading"></span>
+                
+                <span id="plnMain_rptAssigmnetsByCourse_lblHdrAverage_9" class="sg-header-heading sg-right" title="AVG"></span>    
+            </div>
+            <div class="sg-content-grid">
+                
+                <div class="sg-asp-table-group">
+                    
+                </div>
+            </div>
+        </div>           
+            
+    
+
+    
+
+    
+    
+ 
+  
+</div>
+  
+
+            </form>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            // Build the jQuery UI buttons
+            $('.sg-buttonset').controlgroup();
+            $('.sg-button').button();
+            window.parent.$('.sg-legacy-iframe').height($('.sg-main-content').height()); // set the init size
+            // Increase length of smaller content windows to reduce cutoffs in dropdowns. 
+            var iframeHeight = window.parent.$('.sg-legacy-iframe').height(); 
+            if (iframeHeight < 450)
+            { window.parent.$('.sg-legacy-iframe').height($('.sg-main-content').height() + 200); }
+           
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html>
+<html>
+<head><title>
+	HomeAccess
+</title>
+    
+    <link href="/HomeAccess/Stylesheets/Themes/Base/css?v=ErOiUuOsVp6tquD2fInmzTQl3A3SlFxTXp8j5mZ8LI01" rel="Stylesheet" type="text/css" /> 
+
+    
+    <link rel="Stylesheet" href="/HomeAccess/eSchoolPLUSResource/GetEmbeddedStyle?file=CrossSite" />
+    <link rel="Stylesheet" href="/HomeAccess/eSchoolPLUSResource/GetEmbeddedStyle?file=ComboBox" />
+    <link rel="Stylesheet" href="/HomeAccess/Stylesheets/Common/font-awesome.css" />
+    
+    
+    <link rel="Stylesheet" href="/HomeAccess/Stylesheets/Site.css" />
+    <link rel="stylesheet" href="/HomeAccess/Stylesheets/Frame/Frame.css" /> 
+    <link rel="SHORTCUT ICON" href="/HomeAccess/Media/Themes/Base/Common/favicon.ico"/>
+    <style>
+        .sg-asp-table-header-row,
+        .ui-jqgrid-view .ui-jqgrid-hdiv, 
+        .ui-jqgrid tr.ui-jqgrid-labels th  {
+	        background-color: white   ;
+            color: #066868  ;
+        }
+    </style>
+
+    <script src="/HomeAccess/Scripts/libs/jquery?v=qIcuP3UP_aRnf7YSojJ0X96urcPMuU40OLTAhIFZUhU1" type="text/javascript"></script>   
+    <script src="/HomeAccess/Scripts/libs/modernizr-2.8.3.js" type="text/javascript"></script>   
+    <script src="/HomeAccess/Scripts/Trirand/ui.multiselect.js" type="text/javascript" ></script>
+    <script src="/HomeAccess/Scripts/Trirand/i18n/grid.locale-en.js" type="text/javascript"></script>
+    <script src="/HomeAccess/Scripts/Trirand/jquery.jqGrid.js" type="text/javascript"></script>
+    <script src="/HomeAccess/Scripts/libs/json2.js" type="text/javascript"></script>
+    <script src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=SungardCommon" type="text/javascript"></script>    
+    <script src="/HomeAccess/eSchoolPLUSResource/GetEmbeddedScript?file=Combobox" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            parseForComboBoxes();
+        });
+    </script>    
+    
+
+    <script type="text/javascript">
+        $(SunGard.Common.Init('/HomeAccess/'));
+    </script>
+    
+    
+    
+    <script type="text/javascript" src="OpenClassPopUp.js"></script>
+    <script type="text/javascript" >
+        function PrintGPADetailReport() {
+            
+            window.open("/HomeAccess/Grades/PrintGPADetailReport");
+            return false;
+        }
+    </script>
+    <script type="text/javascript" src="AssignmentsFromRCPopUp.js"></script>
+    <script type="text/javascript" src="/HomeAccess/Content/Common/Validation.js"></script>
+    <link href="/HomeAccess/StyleSheets/ReportCard/ReportCards.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    
+    <div id='MainContent' class='sg-main-content'>
+        <div class='sg-hac-content'>
+            <form method="post" action="./Transcript.aspx" id="fmMain">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="q4TRG24ts0++tE3VvrETJzrVXfMOF3HYr0jFfypDq7iis94pUw2fk6Yte99Il6XOPTFyueLmdhot2pLCpmttQ3XvCjXhmF/1E0Kxz/Wx2e/VafoLgMCEEQjYvZq1FCLMSSHi3obzzRUFWT6n+yYejNSjpX2elABYvBds3jImYtG3l9OFCoCEZmfx1OiJmlwK" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="ECC4EA3A" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="HyqY9ZjAeQiLT5NxXcOMi+e7596oN1o76IIvsyAlc0JYn0ulWGdffMvpaOlHay2bEM06QuUlbqFvCnIJjOU9cihvep64E0iTL6rCB21eqXUh/uAc/sV4uKXGMA4wT4pkNwCne3dJETQNyCdxXcnB/Q==" />
+                
+
+
+	<div class="sg-header">
+        <input name="ctl00$plnMain$hdnTitle" type="hidden" id="plnMain_hdnTitle" value="Transcript" />
+    </div>
+    <div class="sg-content-grid">
+        <div class="sg-content-grid-container sg-container-content">
+			<label for="plnMain_ddlGroupCourses" id="plnMain_lblGroupCourses">Group Courses By:</label>
+            <select name="ctl00$plnMain$ddlGroupCourses" id="plnMain_ddlGroupCourses" class="sg-combobox">
+	<option selected="selected" value="Y">Year</option>
+
+</select>
+        </div>
+	    
+	    <table role="presentation"><tr>
+				    <td class="sg-transcript-group" >
+					    <table style="width:100%" role="presentation">
+						    <tr>
+							    <td><span id="plnMain_rpTranscriptGroup_lblYear_0"><b>Year:</b></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblYearValue_0">2023-24</span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGroup_0"><b></b></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGroupValue_0"></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGrade_0"><b>Grade:</b></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGradeValue_0">07</span></td>
+						    </tr>
+						    <tr>
+							    <td><span id="plnMain_rpTranscriptGroup_lblBuilding_0"><b>Building:</b></span></td>
+							    <td colspan=3><span id="plnMain_rpTranscriptGroup_lblBuildingValue_0">Hopewell Middle School</span></td>
+						    </tr>						
+					    </table>														
+
+					    <table class="sg-asp-table" cellspacing="0" rules="all" border="1" id="plnMain_rpTranscriptGroup_dgCourses_0" width="100%">
+	<tr class="sg-asp-table-header-row">
+		<td>Course</td><td>Description</td><td>SEM1</td><td>SEM2</td><td>Final</td><td>Credit</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>03440100 - 1</td><td>SPAN 1</td><td align="center">93</td><td align="center">90</td><td align="center">92</td><td align="right">1.0000</td>
+	</tr>
+</table>
+					    <table style="float:right" role="presentation">
+						    <tr>
+							    <td></td>
+							    <td><label id="plnMain_rpTranscriptGroup_lblGPAValue_0"></label></td>			
+							    <td><label id="plnMain_rpTranscriptGroup_LblTCreditHeader_0">Total Credit:</label></td> 
+							    <td><label id="plnMain_rpTranscriptGroup_LblTCreditValue_0">1.0000</label></td>			
+						    </tr>
+					    </table><br><br>
+			        </td>
+		    
+				    <td class="sg-transcript-group" >
+					    <table style="width:100%" role="presentation">
+						    <tr>
+							    <td><span id="plnMain_rpTranscriptGroup_lblYear_1"><b>Year:</b></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblYearValue_1">2024-25</span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGroup_1"><b></b></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGroupValue_1"></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGrade_1"><b>Grade:</b></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGradeValue_1">08</span></td>
+						    </tr>
+						    <tr>
+							    <td><span id="plnMain_rpTranscriptGroup_lblBuilding_1"><b>Building:</b></span></td>
+							    <td colspan=3><span id="plnMain_rpTranscriptGroup_lblBuildingValue_1">Hopewell Middle School</span></td>
+						    </tr>						
+					    </table>														
+
+					    <table class="sg-asp-table" cellspacing="0" rules="all" border="1" id="plnMain_rpTranscriptGroup_dgCourses_1" width="100%">
+	<tr class="sg-asp-table-header-row">
+		<td>Course</td><td>Description</td><td>SEM1</td><td>SEM2</td><td>Final</td><td>Credit</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>03100500 - 1</td><td>ALG 1</td><td align="center">91</td><td align="center">82</td><td align="center">87</td><td align="right">1.0000</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>03440200 - 1</td><td>SPAN 2</td><td align="center">89</td><td align="center">84</td><td align="center">87</td><td align="right">1.0000</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>13036200 - 1</td><td>PRAPPENG</td><td align="center">100</td><td align="center">100</td><td align="center">100</td><td align="right">1.0000</td>
+	</tr>
+</table>
+					    <table style="float:right" role="presentation">
+						    <tr>
+							    <td></td>
+							    <td><label id="plnMain_rpTranscriptGroup_lblGPAValue_1"></label></td>			
+							    <td><label id="plnMain_rpTranscriptGroup_LblTCreditHeader_1">Total Credit:</label></td> 
+							    <td><label id="plnMain_rpTranscriptGroup_LblTCreditValue_1">3.0000</label></td>			
+						    </tr>
+					    </table><br><br>
+			        </td>
+		    </tr><tr>
+				    <td class="sg-transcript-group" >
+					    <table style="width:100%" role="presentation">
+						    <tr>
+							    <td><span id="plnMain_rpTranscriptGroup_lblYear_2"><b>Year:</b></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblYearValue_2">2025-26</span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGroup_2"><b></b></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGroupValue_2"></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGrade_2"><b>Grade:</b></span></td>
+							    <td><span id="plnMain_rpTranscriptGroup_lblGradeValue_2">09</span></td>
+						    </tr>
+						    <tr>
+							    <td><span id="plnMain_rpTranscriptGroup_lblBuilding_2"><b>Building:</b></span></td>
+							    <td colspan=3><span id="plnMain_rpTranscriptGroup_lblBuildingValue_2">Stony Point High School</span></td>
+						    </tr>						
+					    </table>														
+
+					    <table class="sg-asp-table" cellspacing="0" rules="all" border="1" id="plnMain_rpTranscriptGroup_dgCourses_2" width="100%">
+	<tr class="sg-asp-table-header-row">
+		<td>Course</td><td>Description</td><td>SEM1</td><td>SEM2</td><td>Final</td><td>Credit</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>I3440400 - 1</td><td>IBSPANSL</td><td align="center">87</td><td align="center"></td><td align="center"></td><td align="right">0.5000</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>PES00000 - 1</td><td>SUBATH1</td><td align="center">100</td><td align="center"></td><td align="center"></td><td align="right">0.5000</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>03010200 - 1</td><td>BIO</td><td align="center">85</td><td align="center"></td><td align="center"></td><td align="right">0.5000</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>03100700 - 1</td><td>GEOM</td><td align="center">91</td><td align="center"></td><td align="center"></td><td align="right">0.5000</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>03220100 - 1</td><td>ENG 1</td><td align="center">88</td><td align="center"></td><td align="center"></td><td align="right">0.5000</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>03250100 - 1</td><td>TH1</td><td align="center">100</td><td align="center"></td><td align="center"></td><td align="right">0.5000</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>A3360100 - 1</td><td>APHUMGEOW</td><td align="center">84</td><td align="center"></td><td align="center"></td><td align="right">0.5000</td>
+	</tr><tr class="sg-asp-table-data-row">
+		<td>A3580300 - 1</td><td>APCSPRIN</td><td align="center">83</td><td align="center"></td><td align="center"></td><td align="right">0.5000</td>
+	</tr>
+</table>
+					    <table style="float:right" role="presentation">
+						    <tr>
+							    <td></td>
+							    <td><label id="plnMain_rpTranscriptGroup_lblGPAValue_2"></label></td>			
+							    <td><label id="plnMain_rpTranscriptGroup_LblTCreditHeader_2">Total Credit:</label></td> 
+							    <td><label id="plnMain_rpTranscriptGroup_LblTCreditValue_2">4.0000</label></td>			
+						    </tr>
+					    </table><br><br>
+			        </td>
+		    <td></td></tr>
+				    <tr >
+					    <td>
+						    <table id="plnMain_rpTranscriptGroup_tblCumGPAInfo" class="sg-asp-table">
+	<tr class="sg-asp-table-header-row">
+		<td><label id="plnMain_rpTranscriptGroup_LblGPATypeHeader">GPA Type</label></td>
+		<td><label id="plnMain_rpTranscriptGroup_LblFGPAHeader">GPA</label></td>
+	</tr>
+</table>
+
+
+					    </td>	
+                    </tr>
+                    <tr >
+					    <td>					    
+                        
+                        </td>	
+				    </tr>
+			    </table>
+		    
+    </div>
+
+            </form>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            // Build the jQuery UI buttons
+            $('.sg-buttonset').controlgroup();
+            $('.sg-button').button();
+            window.parent.$('.sg-legacy-iframe').height($('.sg-main-content').height()); // set the init size
+            // Increase length of smaller content windows to reduce cutoffs in dropdowns. 
+            var iframeHeight = window.parent.$('.sg-legacy-iframe').height(); 
+            if (iframeHeight < 450)
+            { window.parent.$('.sg-legacy-iframe').height($('.sg-main-content').height() + 200); }
+           
+        })
+    </script>
+</body>
+</html>
