@@ -3,7 +3,7 @@ import axios from 'axios';
 import { LogIn, ChevronRight, Calculator, Home, ArrowLeft, RefreshCw, LogOut, FileText, Bell, Calendar, User, Settings, Award, BarChart2, Star, Users, MapPin, Clock } from 'lucide-react';
 
 //const API_URL = 'http://localhost:3001/api'; 
-const API_URL = 'https://gpacalculator-jysf.onrender.com';
+const API_URL = 'https://gpacalculator-jysf.onrender.com/api';
 
 export default function App() {
   const [session, setSession] = useState(null);
