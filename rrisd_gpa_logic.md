@@ -81,30 +81,46 @@ Designed for standard on-level courses.
 
 ## 4. Automatic Rigor Level Detection
 
-To automate GPA calculation from scraped Home Access Center (HAC) transcripts, courses are categorized by scanning their descriptions for specific keywords.
+To automate GPA calculation from scraped Home Access Center (HAC) report cards, courses are categorized by scanning their descriptions for specific keywords.
 
 ### Level I (AP/IB/OnRamps/TAG) Matches:
 * Preceded or followed by **`AP `**, **`IB `**, or **`ONRAMPS`**
 * Starts with **`AP`** or **`IB`**
 * *Examples:* `"AP ENGLISH 3"`, `"IBSPANSL"`, `"APCSHP"`
 
-### Level II (Advanced/Pre-AP/Honors/Dual Credit) Matches:
-* Contains **`HONORS`**, **`ADV`**, **`PREAP`**, **`PRE-AP`**, or **`DUAL CREDIT`**
-* *Examples:* `"ADV GEOMETRY"`, `"CHEMISTRY PREAP"`
+### Level II (Advanced/Pre-AP/Honors/Dual Credit / Pre-IB) Matches:
+* Contains **`HONORS`**, **`ADV`**, **`PREAP`**, **`PRE-AP`**, **`PRE-IB`**, **`PRE IB`**, or **`DUAL CREDIT`**
+* *Examples:* `"ADV GEOMETRY"`, `"CHEMISTRY PREAP"`, `"SPANISH III FOR PRE-IB/IB"`
 
 ### Level III (Regular) Matches:
 * Fallback category for any course not matching Level I or Level II criteria.
 
 ---
 
-## 5. JavaScript / React Reference Implementation
+## 5. HAC Scraping & Report Card Parsing Strategy
+
+Rather than pulling cumulative historical records from the HAC Transcript page (which are only updated at the end of the year), the GPA calculation engine targets the official **HAC Report Card page** (`/Grades/ReportCard`).
+
+### Dynamic Column Index Mapping
+Since the report card table contains a different number of columns depending on the school level (e.g., middle school has a 16-column layout with a `FIN` header, while high school has a 24-column layout with a `FINAL` header), the engine dynamically maps columns by scanning the `tr.sg-asp-table-header-row` cells first:
+1. **Course ID Index:** Cells containing `course`.
+2. **Course Description Index:** Cells containing `desc` or `description`.
+3. **Attempted Credit Index:** Cells containing `att` and `credit`.
+4. **Final Grade Index:** Cells matching `fin` or `final`.
+
+### Completed Semester 2 "B" Row Filtering
+To calculate S2 GPA without duplicating courses, the parser iterates over `tr.sg-asp-table-data-row` elements and extracts the course record only if a valid, numerical score is present in the `FINAL` column (which is only populated on Semester 2 "B" rows). Empty cells are ignored.
+
+---
+
+## 6. JavaScript / React Reference Implementation
 
 Below is the verified JavaScript code implemented in the live application:
 
 ```javascript
 /**
  * Calculates weighted and unweighted GPA points for a single course grade based on RRISD EIC policy.
- * @param {string} courseName - The name of the course (e.g., "AP BIOLOGY", "GEOMETRY")
+ * @param {string} courseName - The name of the course (e.g., "AP BIOLOGY", "GEOMETRY", "SPANISH III FOR PRE-IB/IB")
  * @param {number} grade - The numerical grade (0 - 100)
  * @returns {object} { weightedPoints, unweightedPoints, level }
  */
@@ -128,7 +144,7 @@ export function calculateRRISDGpaPoints(courseName, grade) {
   if (nameUpper.includes('AP ') || nameUpper.includes('IB ') || nameUpper.includes('ONRAMPS') || nameUpper.startsWith('AP') || nameUpper.startsWith('IB')) {
     level = 'AP/IB';
     weightedPoints = (grade / 10) - 4.0; // Level I
-  } else if (nameUpper.includes('HONORS') || nameUpper.includes('ADV') || nameUpper.includes('PREAP') || nameUpper.includes('PRE-AP') || nameUpper.includes('DUAL CREDIT')) {
+  } else if (nameUpper.includes('HONORS') || nameUpper.includes('ADV') || nameUpper.includes('PREAP') || nameUpper.includes('PRE-AP') || nameUpper.includes('DUAL CREDIT') || nameUpper.includes('PRE-IB') || nameUpper.includes('PRE IB')) {
     level = 'Advanced';
     weightedPoints = (grade / 10) - 5.0; // Level II
   } else {

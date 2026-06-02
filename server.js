@@ -405,7 +405,7 @@ app.get('/api/class/:id', async (req, res) => {
   });
 
   // -----------------------------------------
-  // GET TRANSCRIPT (Grade 9 only)
+  // GET TRANSCRIPT (Now using Report Card FINAL column as requested)
   // -----------------------------------------
   app.get('/api/transcript', async (req, res) => {
     const token = req.headers['authorization']?.replace('Bearer ', '');
@@ -413,146 +413,92 @@ app.get('/api/class/:id', async (req, res) => {
     if (!session) return res.status(401).json({ error: 'Unauthorized' });
 
     try {
-      console.log(`[transcript] Fetching transcript for token: ${token}`);
-      let transcriptRes = await session.client.get(`${session.baseUrl}/Grades/Transcript`);
-      let $ = cheerio.load(transcriptRes.data);
+      console.log(`[reportcard] Fetching Report Card for token: ${token}`);
+      let rcRes = await session.client.get(`${session.baseUrl}/Grades/ReportCard`);
+      let $ = cheerio.load(rcRes.data);
       
-      // Check if the actual transcript data is inside an older WebForms iframe
+      // Check if the actual report card data is inside an older WebForms iframe
       let iframeSrc = $('#sg-legacy-iframe').attr('src');
       if (iframeSrc) {
-         console.log(`[transcript] Found legacy iframe: ${iframeSrc}`);
+         console.log(`[reportcard] Found legacy iframe: ${iframeSrc}`);
          const fetchUrl = iframeSrc.startsWith('http') ? iframeSrc : `${session.baseUrl}${iframeSrc.replace('/HomeAccess', '')}`;
-         transcriptRes = await session.client.get(fetchUrl);
-         $ = cheerio.load(transcriptRes.data);
+         rcRes = await session.client.get(fetchUrl);
+         $ = cheerio.load(rcRes.data);
       }
       
-      // Save raw transcript HTML for diagnostics
-      fs.writeFileSync('transcript.html', transcriptRes.data);
-      console.log(`[transcript] Saved raw HTML to transcript.html`);
+      // Save raw report card HTML for diagnostics
+      fs.writeFileSync('reportcard.html', rcRes.data);
+      console.log(`[reportcard] Saved raw HTML to reportcard.html`);
 
       const classes = [];
-      let targetTable = null;
-      let foundGrade9 = false;
+      
+      // 1. Locate the report card table headers to map indices dynamically
+      const headers = [];
+      $('table.sg-asp-table tr.sg-asp-table-header-row td').each((i, el) => {
+         headers.push($(el).text().trim().toLowerCase());
+      });
+      
+      console.log(`[reportcard] Detected table headers:`, headers);
+      
+      let courseIdx = headers.findIndex(h => h.includes('course'));
+      let descIdx = headers.findIndex(h => h.includes('desc') || h.includes('description'));
+      let creditIdx = headers.findIndex(h => h.includes('att') && h.includes('credit'));
+      let finalIdx = headers.findIndex(h => h === 'fin' || h === 'final');
 
-      // Strategy 1: Look at the table structure in the screenshot.
-      // Search all elements matching tags that typically hold header text
-      $('span, td, div, th, label, legend, b, strong, p, h1, h2, h3, h4, h5, h6').each((i, el) => {
-         const $el = $(el);
-         const text = $el.text().trim();
-         
-         // Match elements that directly contain "Grade: 09" or "Grade: 9"
-         if ($el.children().length < 5 && /Grade:\s*(09|9)\b/i.test(text)) {
-            console.log(`[transcript] Found matching header element: <${el.tagName}> with text: "${text}"`);
+      // Robust fallbacks if headers couldn't be parsed
+      if (courseIdx === -1) courseIdx = 0;
+      if (descIdx === -1) descIdx = 1;
+      if (creditIdx === -1) creditIdx = 5;
+      if (finalIdx === -1) {
+         // High school typically has 24 columns, with FINAL at column index 15
+         // Middle school has 16 columns, with FIN at column index 13
+         finalIdx = headers.length >= 20 ? 15 : 13;
+      }
+      
+      console.log(`[reportcard] Using column indices -> Course: ${courseIdx}, Desc: ${descIdx}, Credit: ${creditIdx}, Final: ${finalIdx}`);
+
+      // 2. Iterate over the data rows to extract course grades
+      $('table.sg-asp-table tr.sg-asp-table-data-row').each((rowIdx, rowEl) => {
+         const cols = $(rowEl).find('td');
+         if (cols.length > Math.max(courseIdx, descIdx, finalIdx)) {
+            const courseId = $(cols[courseIdx]).text().trim();
+            const description = $(cols[descIdx]).text().trim();
+            const finalGradeStr = $(cols[finalIdx]).text().trim();
             
-            // Look for the next 'table' element in the DOM
-            let $nextTable = $el.nextAll('table').first();
-            if ($nextTable.length === 0) {
-               // Try looking in parents' siblings
-               $el.parents().each((j, p) => {
-                  const $pTable = $(p).nextAll('table').first();
-                  if ($pTable.length > 0 && $nextTable.length === 0) {
-                     $nextTable = $pTable;
-                  }
-               });
+            let credit = 0.5;
+            if (creditIdx !== -1 && cols.length > creditIdx) {
+               const creditStr = $(cols[creditIdx]).text().trim();
+               credit = parseFloat(creditStr) || 0.5;
             }
-            
-            if ($nextTable.length > 0) {
-               console.log(`[transcript] Found candidate table for Grade 9`);
-               targetTable = $nextTable;
-               foundGrade9 = true;
-               return false; // Break loop
+
+            // Skip invalid or header-like rows
+            if (!courseId && !description) return;
+            if (courseId.toLowerCase().includes('course') || description.toLowerCase().includes('description')) return;
+
+            // Only extract courses with a numeric FINAL grade (representing completed courses)
+            if (finalGradeStr && !isNaN(parseFloat(finalGradeStr))) {
+               const grade = parseFloat(finalGradeStr);
+               const letter = grade >= 89.5 ? 'A' : grade >= 79.5 ? 'B' : grade >= 69.5 ? 'C' : grade >= 59.5 ? 'D' : 'F';
+               
+               classes.push({
+                  id: `rc_${courseId.replace(/\s+/g, '')}_${rowIdx}`,
+                  name: description || courseId,
+                  grade: grade,
+                  letter: letter,
+                  instructor: 'Report Card Record',
+                  period: 'N/A',
+                  credit: credit
+               });
             }
          }
       });
 
-      // Strategy 2: Scan all tables containing 'Course' and 'Description'
-      // and check if their header row or their container text contains "Grade: 09" or "Grade: 9"
-      if (!foundGrade9) {
-         console.log(`[transcript] Strategy 1 failed, trying Strategy 2...`);
-         $('table').each((i, tableEl) => {
-            const $table = $(tableEl);
-            const tableText = $table.text();
-            
-            if (tableText.includes('Course') && tableText.includes('Description')) {
-               const parentText = $table.parent().text();
-               if (/Grade:\s*(09|9)\b/i.test(tableText) || /Grade:\s*(09|9)\b/i.test(parentText)) {
-                  console.log(`[transcript] Found table via Strategy 2 matching text or parent text`);
-                  targetTable = $table;
-                  foundGrade9 = true;
-                  return false; // Break loop
-               }
-            }
-         });
-      }
-
-      if (targetTable) {
-         console.log(`[transcript] Parsing Grade 9 transcript table rows...`);
-         targetTable.find('tr').each((rowIdx, rowEl) => {
-            const $row = $(rowEl);
-            const cols = $row.find('td');
-            
-            if (cols.length >= 5) {
-               const courseId = $(cols[0]).text().trim();
-               const description = $(cols[1]).text().trim();
-               const sem1 = $(cols[2]).text().trim();
-               const sem2 = $(cols[3]).text().trim();
-               const finalGrade = $(cols[4]).text().trim();
-               
-               // Credit is usually in the 5th or 6th cell
-               const creditStr = cols.length >= 6 ? $(cols[5]).text().trim() : '';
-               const credit = parseFloat(creditStr) || 0.5;
-
-               // Skip the header row itself if it matches 'Course' or has empty courseId/description
-               if (courseId.toLowerCase().includes('course') || description.toLowerCase().includes('description') || (!courseId && !description)) {
-                  return;
-               }
-
-               // Determine representative grade
-               let grade = NaN;
-               if (finalGrade && !isNaN(parseFloat(finalGrade))) {
-                  grade = parseFloat(finalGrade);
-               } else {
-                  // Fallback to SEM1 or SEM2 or average
-                  const s1Val = parseFloat(sem1);
-                  const s2Val = parseFloat(sem2);
-                  if (!isNaN(s1Val) && !isNaN(s2Val)) {
-                     grade = (s1Val + s2Val) / 2;
-                  } else if (!isNaN(s1Val)) {
-                     grade = s1Val;
-                  } else if (!isNaN(s2Val)) {
-                     grade = s2Val;
-                  }
-               }
-
-               // Letter grade calculation
-               let letter = '-';
-               if (!isNaN(grade)) {
-                  letter = grade >= 89.5 ? 'A' : grade >= 79.5 ? 'B' : grade >= 69.5 ? 'C' : grade >= 59.5 ? 'D' : 'F';
-               }
-
-               if (description || courseId) {
-                  classes.push({
-                     id: `t_${courseId.replace(/\s+/g, '')}_${rowIdx}`,
-                     name: description || courseId,
-                     grade: isNaN(grade) ? 0 : grade,
-                     letter: letter,
-                     instructor: 'Transcript Record',
-                     period: 'N/A',
-                     credit: credit
-                  });
-               }
-            }
-         });
-      } else {
-         console.warn(`[transcript] Warning: Could not find Grade 9 transcript table!`);
-      }
-
-      console.log(`[transcript] Parsed ${classes.length} Grade 9 classes:`, classes);
+      console.log(`[reportcard] Parsed ${classes.length} classes with valid FINAL scores:`, classes);
       res.json({ success: true, classes });
 
     } catch (error) {
-      console.error('Transcript scrape failed:', error.message);
-      res.status(500).json({ success: false, error: 'Failed to scrape transcript from HAC' });
+      console.error('Report Card scrape failed:', error.message);
+      res.status(500).json({ success: false, error: 'Failed to scrape report card from HAC' });
     }
   });
 

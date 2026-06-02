@@ -394,7 +394,7 @@ function GPACalculatorScreen({ session }) {
       if (nameUpper.includes('AP ') || nameUpper.includes('IB ') || nameUpper.includes('ONRAMPS') || nameUpper.startsWith('AP') || nameUpper.startsWith('IB')) {
         level = 'AP/IB';
         wPts = (c.grade / 10) - 4.0; // Level I (6.0 Max Scale)
-      } else if (nameUpper.includes('HONORS') || nameUpper.includes('ADV') || nameUpper.includes('PREAP') || nameUpper.includes('PRE-AP') || nameUpper.includes('DUAL CREDIT')) {
+      } else if (nameUpper.includes('HONORS') || nameUpper.includes('ADV') || nameUpper.includes('PREAP') || nameUpper.includes('PRE-AP') || nameUpper.includes('DUAL CREDIT') || nameUpper.includes('PRE-IB') || nameUpper.includes('PRE IB')) {
         level = 'Advanced';
         wPts = (c.grade / 10) - 5.0; // Level II (5.0 Max Scale)
       } else {
