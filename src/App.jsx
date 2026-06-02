@@ -405,6 +405,7 @@ function GPACalculatorScreen({ session }) {
 
   let totalWeightedPoints = 0;
   let totalUnweightedPoints = 0;
+  let totalCredits = 0;
   let validCount = 0;
 
   const activeGPAClasses = transcriptClasses.filter(c => c.grade > 0).map(c => {
@@ -440,8 +441,9 @@ function GPACalculatorScreen({ session }) {
 
     const isSelected = selectedCourses[c.id] !== false;
     if (isSelected) {
-      totalWeightedPoints += wPts;
-      totalUnweightedPoints += uPts;
+      totalWeightedPoints += (wPts * (c.credit || 0.5));
+      totalUnweightedPoints += (uPts * (c.credit || 0.5));
+      totalCredits += (c.credit || 0.5);
       validCount++;
     }
 
@@ -455,8 +457,8 @@ function GPACalculatorScreen({ session }) {
     };
   });
 
-  const weightedGpa = validCount > 0 ? (totalWeightedPoints / validCount).toFixed(2) : '0.00';
-  const unweightedGpa = validCount > 0 ? (totalUnweightedPoints / validCount).toFixed(2) : '0.00';
+  const weightedGpa = totalCredits > 0 ? (totalWeightedPoints / totalCredits).toFixed(2) : '0.00';
+  const unweightedGpa = totalCredits > 0 ? (totalUnweightedPoints / totalCredits).toFixed(2) : '0.00';
   const displayGpa = isWeighted ? weightedGpa : unweightedGpa;
 
   const handleToggleCourse = (id) => {
