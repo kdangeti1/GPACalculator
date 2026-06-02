@@ -352,26 +352,56 @@ function GradesScreen({ classes, loading, openClass }) {
       </div>
     </div>
   );
-}
-
-// --- PROJECTED GPA CALCULATOR SCREEN ---
+}// --- PROJECTED GPA CALCULATOR SCREEN ---
 function GPACalculatorScreen({ session }) {
   const [transcriptClasses, setTranscriptClasses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isWeighted, setIsWeighted] = useState(true);
+  const [selectedCourses, setSelectedCourses] = useState({});
+
+  // Helper to check if a course is a Core/LOTE subject in RRISD
+  function isRRISDCoreOrLOTE(courseName) {
+    const nameUpper = courseName.toUpperCase();
+    
+    // 1. English Language Arts
+    const isEnglish = nameUpper.includes('ENG') || nameUpper.includes('ELAR') || nameUpper.includes('ENGLISH') || nameUpper.includes('HUMANITIES') || nameUpper.includes('LIT') || nameUpper.includes('CREATIVE');
+    
+    // 2. Mathematics
+    const isMath = nameUpper.includes('MATH') || nameUpper.includes('GEOM') || nameUpper.includes('ALG') || nameUpper.includes('PRECALC') || nameUpper.includes('CALC') || nameUpper.includes('STAT') || nameUpper.includes('ALGEBRA') || nameUpper.includes('GEOMETRY') || nameUpper.includes('PRE-CALCULUS') || nameUpper.includes('STATS') || nameUpper.includes('COMP SCI') || nameUpper.includes('COMPUTER SCIENCE') || nameUpper.includes('COMP_SCI');
+    
+    // 3. Science
+    const isScience = nameUpper.includes('BIO') || nameUpper.includes('CHEM') || nameUpper.includes('PHYS') || nameUpper.includes('SCI') || nameUpper.includes('BIOLOGY') || nameUpper.includes('CHEMISTRY') || nameUpper.includes('PHYSICS') || nameUpper.includes('IPC') || nameUpper.includes('ENVIRONMENT');
+    
+    // 4. Social Studies
+    const isSocialStudies = nameUpper.includes('HIST') || nameUpper.includes('GOVT') || nameUpper.includes('ECON') || nameUpper.includes('GEOG') || nameUpper.includes('CIV') || nameUpper.includes('HISTORY') || nameUpper.includes('GOVERNMENT') || nameUpper.includes('ECONOMICS') || nameUpper.includes('GEOGRAPHY') || nameUpper.includes('US HIST') || nameUpper.includes('WORLD HIST') || nameUpper.includes('APUSH') || nameUpper.includes('WHAP') || nameUpper.includes('EURO');
+    
+    // 5. LOTE / World Languages
+    const isLOTE = nameUpper.includes('SPANISH') || nameUpper.includes('FRENCH') || nameUpper.includes('GERMAN') || nameUpper.includes('LATIN') || nameUpper.includes('CHINESE') || nameUpper.includes('ASL') || nameUpper.includes('JAPANESE') || nameUpper.includes('SPAN') || nameUpper.includes('FREN') || nameUpper.includes('GERM') || nameUpper.includes('CHIN') || nameUpper.includes('LOTE') || nameUpper.includes('SIGN LANG');
+
+    return isEnglish || isMath || isScience || isSocialStudies || isLOTE;
+  }
 
   useEffect(() => {
     if (session && session.token) {
       axios.get(`${API_URL}/transcript`, {
         headers: { Authorization: `Bearer ${session.token}` }
       }).then(res => {
-        setTranscriptClasses(res.data.classes || []);
+        const classes = res.data.classes || [];
+        setTranscriptClasses(classes);
+        
+        // Initialize course selections: include only Core Academic & LOTE courses by default
+        const initialSelections = {};
+        classes.forEach(c => {
+           initialSelections[c.id] = isRRISDCoreOrLOTE(c.name);
+        });
+        setSelectedCourses(initialSelections);
+        
         loading !== false && setLoading(false);
       }).catch(() => setLoading(false));
     }
   }, [session?.token]);
 
-  if (loading) return <div className="text-center p-8 animate-pulse text-secondary">Loading Grade 9 Transcript...</div>;
+  if (loading) return <div className="text-center p-8 animate-pulse text-secondary">Loading Grade 9 Report Card...</div>;
 
   let totalWeightedPoints = 0;
   let totalUnweightedPoints = 0;
@@ -408,16 +438,20 @@ function GPACalculatorScreen({ session }) {
     wPts = parseFloat(wPts.toFixed(2));
     uPts = parseFloat(uPts.toFixed(2));
 
-    totalWeightedPoints += wPts;
-    totalUnweightedPoints += uPts;
-    validCount++;
+    const isSelected = selectedCourses[c.id] !== false;
+    if (isSelected) {
+      totalWeightedPoints += wPts;
+      totalUnweightedPoints += uPts;
+      validCount++;
+    }
 
     return {
       ...c,
       level,
       wPts,
       uPts,
-      pts: isWeighted ? wPts : uPts
+      pts: isWeighted ? wPts : uPts,
+      isSelected
     };
   });
 
@@ -425,9 +459,26 @@ function GPACalculatorScreen({ session }) {
   const unweightedGpa = validCount > 0 ? (totalUnweightedPoints / validCount).toFixed(2) : '0.00';
   const displayGpa = isWeighted ? weightedGpa : unweightedGpa;
 
+  const handleToggleCourse = (id) => {
+    setSelectedCourses(prev => ({
+       ...prev,
+       [id]: !prev[id]
+    }));
+  };
+
   return (
     <div className="flex-col gap-6 animate-slide-up stagger-1 pb-10">
       
+      {/* Policy Explainer Alert */}
+      <div className="card flex-col gap-2" style={{ background: '#eff6ff', border: '1px solid #bfdbfe', padding: '1rem', borderRadius: '0.8rem' }}>
+        <span className="h4 flex-row items-center gap-2" style={{ color: '#1e3a8a', fontSize: '0.95rem', fontWeight: 'bold', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem' }}>
+           <Award size={18} /> RRISD EIC (LOCAL) GPA Policy
+        </span>
+        <p style={{ color: '#1e40af', fontSize: '0.85rem', margin: 0, lineHeight: 1.4 }}>
+           Class Rank and GPA calculations include only core academic subjects (English, Math, Science, Social Studies) and LOTE (Languages Other Than English). PE/Athletics and Fine Arts are excluded by default. Use the checkboxes below to customize calculations.
+        </p>
+      </div>
+
       {/* GPA Type Toggle Tab */}
       <div className="flex-row gap-2" style={{ background: '#e2e8f0', padding: '0.3rem', borderRadius: '0.8rem', width: '100%', maxWidth: '280px', margin: '0 auto', display: 'flex', flexDirection: 'row' }}>
         <button 
@@ -469,49 +520,94 @@ function GPACalculatorScreen({ session }) {
       {/* GPA Display Card */}
       <div className="card text-center flex-col items-center py-8" style={{ background: '#f8fdf9', border: '2px solid #e0f2e6' }}>
         <span className="text-body mb-2" style={{ color: '#444', fontWeight: 'bold' }}>
-          Grade 9 {isWeighted ? 'Weighted' : 'Unweighted'} GPA
+          {isWeighted ? 'Weighted' : 'Unweighted'} GPA
         </span>
         <span style={{ fontSize: '4rem', fontWeight: 800, color: 'var(--brand-green)', lineHeight: 1 }}>
           {displayGpa}
         </span>
         <span className="text-small mt-3 font-bold" style={{ color: '#88a' }}>
-          Calculated from {validCount} core transcript classes.
+          Calculated from {validCount} included core courses.
         </span>
       </div>
 
       {/* Course Points Break-down */}
       <div className="flex-col gap-3 mt-2">
         <span className="text-small font-bold px-2" style={{ color: '#999', textTransform: 'uppercase', letterSpacing: '1px' }}>
-          Point Breakdown (Grade 9)
+          GPA Editor & Point Breakdown
         </span>
         {activeGPAClasses.map((cls, i) => (
-          <div key={i} className="menu-card py-4" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div className="flex-col flex-1 gap-1" style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className="h4" style={{ fontSize: '0.95rem', color: '#444' }}>{cls.name}</span>
-              <div className="flex-row gap-2 items-center" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem' }}>
-                <span className="badge" style={{ 
-                  fontSize: '0.75rem', 
-                  padding: '0.1rem 0.5rem', 
-                  borderRadius: '0.4rem',
-                  background: cls.level === 'AP/IB' ? '#e0f2fe' : cls.level === 'Advanced' ? '#fef3c7' : '#f1f5f9',
-                  color: cls.level === 'AP/IB' ? '#0369a1' : cls.level === 'Advanced' ? '#b45309' : '#475569',
-                  fontWeight: 'bold'
+          <div 
+            key={i} 
+            className="menu-card py-4" 
+            style={{ 
+              display: 'flex', 
+              flexDirection: 'row', 
+              alignItems: 'center', 
+              justifyContent: 'space-between',
+              opacity: cls.isSelected ? 1.0 : 0.5,
+              transition: 'opacity 0.2s ease'
+            }}
+          >
+            <div className="flex-row gap-3 items-center" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.8rem' }}>
+              <input 
+                 type="checkbox" 
+                 checked={cls.isSelected}
+                 onChange={() => handleToggleCourse(cls.id)}
+                 style={{ 
+                    width: '18px', 
+                    height: '18px', 
+                    cursor: 'pointer',
+                    accentColor: 'var(--brand-green)'
+                 }}
+              />
+              <div className="flex-col gap-1" style={{ display: 'flex', flexDirection: 'column' }}>
+                <span className="h4" style={{ 
+                   fontSize: '0.95rem', 
+                   color: '#444',
+                   textDecoration: cls.isSelected ? 'none' : 'line-through'
                 }}>
-                  {cls.level}
+                   {cls.name}
                 </span>
-                <span style={{ color: '#aaa', fontSize: '0.8rem' }}>•</span>
-                <span className="text-small" style={{ color: '#888', fontSize: '0.8rem' }}>Credit: {cls.credit || 0.5}</span>
+                <div className="flex-row gap-2 items-center" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem' }}>
+                  <span className="badge" style={{ 
+                    fontSize: '0.75rem', 
+                    padding: '0.1rem 0.5rem', 
+                    borderRadius: '0.4rem',
+                    background: cls.level === 'AP/IB' ? '#e0f2fe' : cls.level === 'Advanced' ? '#fef3c7' : '#f1f5f9',
+                    color: cls.level === 'AP/IB' ? '#0369a1' : cls.level === 'Advanced' ? '#b45309' : '#475569',
+                    fontWeight: 'bold'
+                  }}>
+                    {cls.level}
+                  </span>
+                  <span style={{ color: '#aaa', fontSize: '0.8rem' }}>•</span>
+                  <span className="text-small" style={{ color: '#888', fontSize: '0.8rem' }}>
+                     {isRRISDCoreOrLOTE(cls.name) ? 'Core/LOTE' : 'Elective / Excluded'}
+                  </span>
+                </div>
               </div>
             </div>
+            
             <div className="flex-row gap-4 items-center" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem' }}>
-              <span className="text-body font-bold" style={{ color: '#888' }}>{cls.grade}%</span>
-              <span className="badge" style={{ background: 'var(--brand-green)', color: 'white', minWidth: '3.5rem', textAlign: 'center', fontSize: '1rem', padding: '0.3rem', borderRadius: '0.5rem', fontWeight: 'bold' }}>
+              <span className="text-body font-bold" style={{ color: '#888', textDecoration: cls.isSelected ? 'none' : 'line-through' }}>
+                 {cls.grade}%
+              </span>
+              <span className="badge" style={{ 
+                 background: cls.isSelected ? 'var(--brand-green)' : '#94a3b8', 
+                 color: 'white', 
+                 minWidth: '3.5rem', 
+                 textAlign: 'center', 
+                 fontSize: '1rem', 
+                 padding: '0.3rem', 
+                 borderRadius: '0.5rem', 
+                 fontWeight: 'bold',
+                 textDecoration: cls.isSelected ? 'none' : 'line-through'
+              }}>
                 {cls.pts.toFixed(1)}
               </span>
             </div>
           </div>
         ))}
-        {activeGPAClasses.length === 0 && <div className="text-center text-secondary py-8">No numerical grades found in Grade 9.</div>}
+        {activeGPAClasses.length === 0 && <div className="text-center text-secondary py-8">No numerical grades found.</div>}
       </div>
     </div>
   );
