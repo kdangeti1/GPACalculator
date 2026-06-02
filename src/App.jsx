@@ -358,6 +358,7 @@ function GPACalculatorScreen({ session }) {
   const [loading, setLoading] = useState(true);
   const [isWeighted, setIsWeighted] = useState(true);
   const [selectedCourses, setSelectedCourses] = useState({});
+  const [classOf2028, setClassOf2028] = useState(false);
 
   // Helper to check if a course is a Core/LOTE subject in RRISD
   function isRRISDCoreOrLOTE(courseName) {
@@ -427,10 +428,18 @@ function GPACalculatorScreen({ session }) {
         wPts = (c.grade / 10) - 4.0; // Level I (6.0 Max Scale)
       } else if (nameUpper.includes('HONORS') || nameUpper.includes('ADV') || nameUpper.includes('PREAP') || nameUpper.includes('PRE-AP') || nameUpper.includes('DUAL CREDIT') || nameUpper.includes('PRE-IB') || nameUpper.includes('PRE IB')) {
         level = 'Advanced';
-        wPts = (c.grade / 10) - 5.0; // Level II (5.0 Max Scale)
+        if (classOf2028) {
+          wPts = (c.grade / 10) - 5.0; // Level II (5.0 Max Scale for Class of 2028+)
+        } else {
+          wPts = (c.grade / 10) - 4.0; // Level I (6.0 Max Scale for Pre-2028)
+        }
       } else {
         level = 'Regular';
-        wPts = (c.grade / 10) - 6.0; // Level III (4.0 Max Scale)
+        if (classOf2028) {
+          wPts = (c.grade / 10) - 6.0; // Level III (4.0 Max Scale for Class of 2028+)
+        } else {
+          wPts = (c.grade / 10) - 5.0; // Level II (5.0 Max Scale for Pre-2028)
+        }
       }
     } else {
       wPts = 0.0;
@@ -457,8 +466,8 @@ function GPACalculatorScreen({ session }) {
     };
   });
 
-  const weightedGpa = totalCredits > 0 ? (totalWeightedPoints / totalCredits).toFixed(2) : '0.00';
-  const unweightedGpa = totalCredits > 0 ? (totalUnweightedPoints / totalCredits).toFixed(2) : '0.00';
+  const weightedGpa = totalCredits > 0 ? (totalWeightedPoints / totalCredits).toFixed(3) : '0.000';
+  const unweightedGpa = totalCredits > 0 ? (totalUnweightedPoints / totalCredits).toFixed(3) : '0.000';
   const displayGpa = isWeighted ? weightedGpa : unweightedGpa;
 
   const handleToggleCourse = (id) => {
@@ -479,6 +488,23 @@ function GPACalculatorScreen({ session }) {
         <p style={{ color: '#1e40af', fontSize: '0.85rem', margin: 0, lineHeight: 1.4 }}>
            Class Rank and GPA calculations include only core academic subjects (English, Math, Science, Social Studies) and LOTE (Languages Other Than English). PE/Athletics and Fine Arts are excluded by default. Use the checkboxes below to customize calculations.
         </p>
+      </div>
+
+      {/* Graduation Cohort Selector */}
+      <div className="card flex-col gap-2" style={{ padding: '1rem', border: '1px solid #e2e8f0', background: 'white', borderRadius: '0.8rem' }}>
+        <span className="text-small font-bold" style={{ color: '#666', textTransform: 'uppercase' }}>Graduation Cohort & GPA Policy</span>
+        <div className="flex-row items-center gap-3" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.75rem', marginTop: '0.25rem' }}>
+          <input 
+            type="checkbox" 
+            id="classOf2028"
+            checked={classOf2028}
+            onChange={(e) => setClassOf2028(e.target.checked)}
+            style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: 'var(--brand-green)' }}
+          />
+          <label htmlFor="classOf2028" style={{ fontSize: '0.9rem', color: '#333', fontWeight: '500', cursor: 'pointer' }}>
+             Are you part of the Class of 2028 or later?
+          </label>
+        </div>
       </div>
 
       {/* GPA Type Toggle Tab */}
@@ -575,11 +601,11 @@ function GPACalculatorScreen({ session }) {
                     fontSize: '0.75rem', 
                     padding: '0.1rem 0.5rem', 
                     borderRadius: '0.4rem',
-                    background: cls.level === 'AP/IB' ? '#e0f2fe' : cls.level === 'Advanced' ? '#fef3c7' : '#f1f5f9',
-                    color: cls.level === 'AP/IB' ? '#0369a1' : cls.level === 'Advanced' ? '#b45309' : '#475569',
+                    background: cls.level === 'AP/IB' || (cls.level === 'Advanced' && !classOf2028) ? '#e0f2fe' : (cls.level === 'Advanced' && classOf2028) || (cls.level === 'Regular' && !classOf2028) ? '#fef3c7' : '#f1f5f9',
+                    color: cls.level === 'AP/IB' || (cls.level === 'Advanced' && !classOf2028) ? '#0369a1' : (cls.level === 'Advanced' && classOf2028) || (cls.level === 'Regular' && !classOf2028) ? '#b45309' : '#475569',
                     fontWeight: 'bold'
                   }}>
-                    {cls.level}
+                    {cls.level === 'Advanced' && !classOf2028 ? 'Advanced (6.0 Scale)' : cls.level === 'Regular' && !classOf2028 ? 'Regular (5.0 Scale)' : cls.level}
                   </span>
                   <span style={{ color: '#aaa', fontSize: '0.8rem' }}>•</span>
                   <span className="text-small" style={{ color: '#888', fontSize: '0.8rem' }}>
